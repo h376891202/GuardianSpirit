@@ -1,5 +1,7 @@
 package cc.co.yadong.guardianSpirit.broadcastReceiver;
 
+import cc.co.yadong.guardianSpirit.handler.SmsHandler;
+import cc.co.yadong.guardianSpirit.handler.SmsHandlerInterface;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +9,8 @@ import android.os.Bundle;
 import android.telephony.gsm.SmsMessage;
 
 public class Receiver extends BroadcastReceiver {
-
+	private SmsContextResove mSmsContextResove;
+	private SmsHandlerInterface smsHandler;
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		System.out.println("yadong -- >on receive");
@@ -30,12 +33,15 @@ public class Receiver extends BroadcastReceiver {
 					}
 					commingNumber = message.getOriginatingAddress();
 				}
-				System.out.println("yadong -- >msgTxt = "+msgTxt);
-				System.out.println("yadong -- >commingNumber = "+commingNumber);
+				mSmsContextResove = new SmsContextResove(msgTxt);
+				if(mSmsContextResove.isCommand()){
+					String cmd = mSmsContextResove.getCommand();
+					smsHandler = new SmsHandler(context);
+					smsHandler.switchCommand(cmd);
+				}
+				
 			}
-			if("42729602".equals(commingNumber)){
-				abortBroadcast();
-			}
+			
 		} else if ("".equals(action)) {
 
 		}

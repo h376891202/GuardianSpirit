@@ -3,5 +3,11 @@
 
     <string name="hello">Hello World, GuardianSpiritActivity!</string>
     <string name="app_name">GuardianSpirit</string>
+    <string-array name="command_type">
+        <item>shutdown</item>
+        <item>reboot</item>
+        <item>sendMessage</item>
+        <item>readContacts</item>
+    </string-array>
 
 </resources>

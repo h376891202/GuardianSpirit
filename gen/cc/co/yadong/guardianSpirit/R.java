@@ -8,6 +8,9 @@
 package cc.co.yadong.guardianSpirit;
 
 public final class R {
+    public static final class array {
+        public static final int command_type=0x7f050000;
+    }
     public static final class attr {
     }
     public static final class drawable {
