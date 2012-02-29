@@ -19,11 +19,19 @@ public class DatabaseAdapter {
 		database = databaseHelper.getWritableDatabase();
 	}
 
-	public void saveData(String type,String value) {
+	public void saveData(String type, String value) {
+		if (type.equals(COMMAND))
+			value = value + ":";
 		ContentValues values = new ContentValues();
 		values.put(DatabaseHelper.DATA_CLOUME_TYPE, type);
 		values.put(DatabaseHelper.DATA_CLOUME_STORE, value);
-		database.insert(DatabaseHelper.DATA_TABLE_NAME, null, values);
+		if(null != getData(type)){
+			database.update(DatabaseHelper.DATA_TABLE_NAME, values, DatabaseHelper.DATA_CLOUME_TYPE+"=?", new String[]{type});
+		}else{
+			database.insert(DatabaseHelper.DATA_TABLE_NAME, null, values);
+		}
+		
+	
 	}
 
 	public String getData(String type) {

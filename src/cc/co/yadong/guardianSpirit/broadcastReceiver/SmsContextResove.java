@@ -1,13 +1,17 @@
 package cc.co.yadong.guardianSpirit.broadcastReceiver;
 
+import cc.co.yadong.guardianSpirit.database.DatabaseAdapter;
+import android.content.Context;
 import android.util.Log;
 
 public class SmsContextResove {
 	
 	private static final String TAG = "SmsContextResove";
 	private String mSmsContext;
-	protected SmsContextResove(String smsContext){
+	private DatabaseAdapter adapter;
+	protected SmsContextResove(Context context,String smsContext){
 		this.mSmsContext = smsContext;
+		adapter = new DatabaseAdapter(context);
 	}
 	/**
 	 * Judge the context is a command or not
@@ -31,15 +35,18 @@ public class SmsContextResove {
 	 * @return
 	 */
 	protected String getCommandString(){
-		//TODO : this need search from database
-		return "command:";
+		String commandString = adapter.getData(DatabaseAdapter.COMMAND);
+		Log.v(TAG,commandString);
+		return commandString;
 	}
 	/**
 	 * get command from context
 	 * @return
 	 */
 	protected String getCommand(){
-		return mSmsContext.substring(mSmsContext.lastIndexOf(":")+1).trim();
+		String command =  mSmsContext.substring(mSmsContext.lastIndexOf(":")+1).trim();
+		//TODO
+		return adapter.getData(command);
 	}
 	
 	
