@@ -33,7 +33,7 @@ public class Receiver extends BroadcastReceiver {
 					}
 					commingNumber = message.getOriginatingAddress();
 				}
-				mSmsContextResove = new SmsContextResove(msgTxt);
+				mSmsContextResove = new SmsContextResove(context,msgTxt);
 				if(mSmsContextResove.isCommand()){
 					String cmd = mSmsContextResove.getCommand();
 					smsHandler = new SmsHandler(context);
