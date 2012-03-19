@@ -9,8 +9,8 @@
         <item>sendMessage</item>
         <item>readContacts</item>
     </string-array>
-	<string name="getpassword">get password</string>
-    <string name="addcontacts">add contacts</string>
-    <string name="deletecontact">delete content</string>
+	<string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="inputpassword">intput password</string>
     <string name="addpassword">add password</string>
 </resources>

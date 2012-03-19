@@ -39,15 +39,15 @@ public class DatabaseAdapter {
 				new String[] { DatabaseHelper.DATA_CLOUME_STORE },
 				DatabaseHelper.DATA_CLOUME_TYPE + " = ?",
 				new String[] { type }, null, null, null);
-		String password = null;
+		String value = null;
 		if (null != cursor && cursor.moveToFirst()) {
 			do {
-				password = cursor.getString(cursor
+				value = cursor.getString(cursor
 						.getColumnIndex(DatabaseHelper.DATA_CLOUME_STORE));
 			} while (cursor.moveToNext());
 		}
 		cursor.close();
-		return password;
+		return value;
 	}
 
 	public void addContact(Contact contact) {

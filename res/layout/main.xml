@@ -4,30 +4,40 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/addpassword" />
+        android:paddingLeft="10dip"
+        android:text="@string/inputpassword"
+        android:textSize="30dip" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/getpassword" />
+        android:inputType="text"
+        android:password="true" >
+    </EditText>
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/addcontacts" />
+        android:orientation="horizontal" android:gravity="right">
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/deletecontact" />
+        <Button
+            android:id="@+id/ok_button"
+            android:layout_width="100dip"
+            android:layout_height="fill_parent" 
+              android:text="@string/ok"/>
+        
 
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="100dip"
+            android:layout_height="fill_parent"
+              android:text="@string/cancel"
+       />
+    </LinearLayout>
 
 
 </LinearLayout>
