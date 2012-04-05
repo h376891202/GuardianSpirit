@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    android:baselineAligned="false">
+    android:baselineAligned="false"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -15,33 +15,29 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dip"
-            android:text="@string/prompt_message"
-            android:textSize="21dip" />
+            android:textSize="16dip"
+            android:text="@string/second_step_msg" />
 
+        <EditText
+            android:id="@+id/default_phone_number"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone" 
+            android:layout_marginTop="5dip"/>
+        
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:text="@string/inputpasswordmessage" />
-
+            android:paddingLeft="10dip"
+            android:textSize="16dip"
+            android:text="@string/third_step_msg" />
+        
         <EditText
-            android:id="@+id/password_input"
+            android:id="@+id/default_oreder"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:password="true" >
-        </EditText>
-
-        <EditText
-            android:id="@+id/verify_password_input"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:password="true" />
-       	<CheckBox android:id="@+id/show_password"
-       	    android:layout_height="wrap_content"
-       	    android:layout_width="wrap_content"
-       	    android:text="@string/show_password_msg"/>
+            android:inputType="text" 
+            android:layout_marginTop="5dip"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -50,14 +46,6 @@
         android:background="@android:drawable/bottom_bar"
         android:gravity="right"
         android:orientation="horizontal" >
-
-        <Button
-            android:id="@+id/cancel_button"
-            android:layout_width="100dip"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/ok_button"

@@ -3,16 +3,21 @@
 
     <string name="hello">Hello World, GuardianSpiritActivity!</string>
     <string name="app_name">GuardianSpirit</string>
+
     <string-array name="command_type">
         <item>shutdown</item>
         <item>reboot</item>
         <item>sendMessage</item>
         <item>readContacts</item>
     </string-array>
-	<string name="ok">OK</string>
+
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="show_password_msg">show password</string>
     <string name="addpassword">add password</string>
     <string name="prompt_message">You can configure your phone just a few steps.</string>
-    <string name="inputpasswordmessage">first your should set a password for this application.</string>
+    <string name="inputpasswordmessage">Step one, your should set a password for this application.</string>
+    <string name="second_step_msg">Step two, you should input a phone number,you can send order by use that number easy.</string>
+    <string name="third_step_msg">Step three , now you should input a string as your designator, so application can know the different from ordering message and normal message.</string>
+
 </resources>
