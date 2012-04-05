@@ -11,6 +11,8 @@
     </string-array>
 	<string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="inputpassword">intput password</string>
+    <string name="show_password_msg">show password</string>
     <string name="addpassword">add password</string>
+    <string name="prompt_message">You can configure your phone just a few steps.</string>
+    <string name="inputpasswordmessage">first your should set a password for this application.</string>
 </resources>
