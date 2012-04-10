@@ -41,6 +41,7 @@ public class MainActivity extends TabActivity implements OnTabChangeListener{
 		textViews = new ArrayList<View>();
 		setupSettingTab();
 		setupMessageTab();
+		mTabHost.setOnTabChangedListener(this);
 		
 	}
 	private void setupMessageTab() {
@@ -63,6 +64,7 @@ public class MainActivity extends TabActivity implements OnTabChangeListener{
 		Intent intent = new Intent();
 		intent.setClass(this, MessageTab.class);
 		View view = mLayoutInflater.inflate(R.layout.tab_short, null);
+		view.setBackgroundColor(Color.RED);
 		ImageView imageView = (ImageView)(view.findViewById(R.id.tab_icon));
 		imageView.setImageResource(R.drawable.ic_launcher);
 		TextView textView = (TextView)(view.findViewById(R.id.tab_label));
@@ -74,8 +76,10 @@ public class MainActivity extends TabActivity implements OnTabChangeListener{
 		System.out.println("yadong ----1");
 		if(tabId.equals("message_tb")){
 			textViews.get(0).setBackgroundColor(Color.RED);
+			textViews.get(1).setBackgroundColor(Color.BLACK);
 		}else{
 			textViews.get(1).setBackgroundColor(Color.RED);
+			textViews.get(0).setBackgroundColor(Color.BLACK);
 		}
 	}
 	
