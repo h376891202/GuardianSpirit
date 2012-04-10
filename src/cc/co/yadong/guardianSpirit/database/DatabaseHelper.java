@@ -10,7 +10,7 @@ import cc.co.yadong.guardianSpirit.R;
 public class DatabaseHelper extends SQLiteOpenHelper{
 	private static final String TAG = "DatabaseHelper";
 	private static final int DATABASE_VERSION = 1;
-	protected static final String DATABASE_NAME = "guardianSpirit";
+	protected static final String DATABASE_NAME = "guardianSpirit.db";
 	protected static final String WHITE_AND_BLACK_TABLE_NAME  = "white_black";
 	protected static final String WHITE_AND_BLACK_CLOUME_NAME  = "name";
 	protected static final String WHITE_AND_BLACK_CLOUME_NUMBER = "number";

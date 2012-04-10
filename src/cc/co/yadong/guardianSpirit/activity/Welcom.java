@@ -30,7 +30,7 @@ public class Welcom extends Activity implements OnClickListener{
 	private EditText mPassword;
 	private EditText mRepassword;
 	private CheckBox mShowPassword;
-	@Override
+	 
 	protected void onCreate(Bundle savedInstanceState) {
 		dataHandler = new DataHandler(this);
 		if(dataHandler.isPasswordSaved()){
@@ -50,21 +50,21 @@ public class Welcom extends Activity implements OnClickListener{
 		mPassword.addTextChangedListener(new TextChangeListener());
 		mShowPassword = (CheckBox) findViewById(R.id.show_password);
 		mShowPassword.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			@Override
+			 
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				if(isChecked){
 					mPassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
 					mRepassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
 				}else{
 					mPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-					mRepassword.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+					mRepassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 				}
 			}
 		});
 		
 	}
 	private class TextChangeListener implements TextWatcher{
-		@Override
+		 
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			if(mRepassword.getText().toString().equals(mPassword.getText().toString()))
 				mNextButton.setEnabled(true);
@@ -72,11 +72,11 @@ public class Welcom extends Activity implements OnClickListener{
 				mNextButton.setEnabled(false);
 		}
 		
-		@Override
+		 
 		public void beforeTextChanged(CharSequence s, int start, int count,
 				int after) {}
 		
-		@Override
+		 
 		public void afterTextChanged(Editable s) {}
 	}
 	public void onClick(View v) {
