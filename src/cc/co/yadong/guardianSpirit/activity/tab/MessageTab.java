@@ -1,6 +1,8 @@
 package cc.co.yadong.guardianSpirit.activity.tab;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import android.app.AlertDialog;
@@ -10,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -29,11 +32,11 @@ public class MessageTab extends ListActivity{
 		listView = getListView();
 		factory = LayoutInflater.from(this);
 		HashMap<String, String> maps = new HashMap<String, String>();
-		maps.put("1", "command:reboot");
+		maps.put("1", "command:rebootcommand:reboocommand:reboocommand:reboocommand:reboo");
 		maps.put("2", "150028694343");
 		maps.put("3", "2012/12/12");
 		HashMap<String, String> maps2 = new HashMap<String, String>();
-		maps.put("1", "command:reboot");
+		maps.put("1", "command:rebootcommand:reboocommand:reboocommand:reboocommand:reboocommand:reboocommand:reboo");
 		maps.put("2", "150028694343");
 		maps.put("3", "2012/12/12");
 		ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String,String>>();
@@ -75,6 +78,8 @@ public class MessageTab extends ListActivity{
 		
 		TextView textView = (TextView)view.findViewById(R.id.show_phone_number);
 		TextView textView1 = (TextView)view.findViewById(R.id.alert_title);
+		TextView showMessageTime = (TextView) view.findViewById(R.id.show_message_time);
+		TextView messageContent = (TextView) view.findViewById(R.id.message_content);
 		Button delete =(Button)view.findViewById(R.id.delete_message);
 		Button close =(Button)view.findViewById(R.id.close_message);
 		delete.setOnClickListener(new OnClickListener() {
@@ -84,19 +89,23 @@ public class MessageTab extends ListActivity{
 		});
 		close.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				dismissDialog(1);
+				dismissDialog(0);
 			}
 		});
-		ImageView imageView = (ImageView) view.findViewById(R.id.image_view);
-		imageView.setBackgroundResource(R.drawable.alert_img);
 		delete.setText("delete");
 		close.setText("close");
 		textView.setText("15002869434");
-		textView1.setText("message");
+		textView1.setText("ordering message");
+		showMessageTime.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime()));
+		messageContent.setText("command:reboot!wo lege ca  ni daodi yao gansme ");
 		dialog.getWindow().setContentView(view);
 	}
 	
-	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(0,1,1,"delete all");
+		return super.onCreateOptionsMenu(menu);
+	}
 	
 	
 }

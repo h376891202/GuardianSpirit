@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -43,8 +44,8 @@ public class MainActivity extends TabActivity implements OnTabChangeListener {
 		TabWidget tabWidget = mTabHost.getTabWidget();
 		tabWidget.setBackgroundResource(R.drawable.tab_bg);
 		mLayoutInflater = LayoutInflater.from(this);
-		setupSettingTab();
 		setupMessageTab();
+		setupSettingTab();
 		mTabHost.setOnTabChangedListener(this);
 		views.get(mTabHost.getCurrentTabTag()).setTextColor(
 				getResources().getColor(R.color.tab_label_select));
