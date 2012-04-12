@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
@@ -71,12 +72,23 @@ public class MessageTab extends ListActivity{
 	protected void onPrepareDialog(int id, Dialog dialog) {
 		View view = factory.inflate(R.layout.message_dialog, null);
 		view.setBackgroundColor(Color.BLACK);
+		
 		TextView textView = (TextView)view.findViewById(R.id.show_phone_number);
 		TextView textView1 = (TextView)view.findViewById(R.id.alert_title);
 		Button delete =(Button)view.findViewById(R.id.delete_message);
 		Button close =(Button)view.findViewById(R.id.close_message);
+		delete.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				
+			}
+		});
+		close.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				dismissDialog(1);
+			}
+		});
 		ImageView imageView = (ImageView) view.findViewById(R.id.image_view);
-		imageView.setImageResource(R.drawable.alert_img);
+		imageView.setBackgroundResource(R.drawable.alert_img);
 		delete.setText("delete");
 		close.setText("close");
 		textView.setText("15002869434");
