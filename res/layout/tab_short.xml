@@ -2,27 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tab_bottom"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-     >
+    android:layout_height="wrap_content"
+    android:background="@drawable/tab_background">
 
     <ImageView
         android:id="@+id/tab_icon"
         android:layout_width="wrap_content"
-        android:layout_height="40dip"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dip" />
 
     <TextView
         android:id="@+id/tab_label"
         android:layout_width="wrap_content"
-        android:layout_height="40dip"
+        android:layout_height="wrap_content"
         android:layout_below="@id/tab_icon"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="3dip"
+        android:layout_marginBottom="5dip"
+        android:paddingBottom="10dip"
         android:layout_marginTop="0dip"
         android:ellipsize="marquee"
         android:singleLine="true"
-        android:textColor="#7c7c7c"
-        android:textSize="24dip" />
+        android:textColor="@color/tab_label_unselect"
+        android:textSize="16dip"/>
 
 </RelativeLayout>

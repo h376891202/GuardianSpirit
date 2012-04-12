@@ -2,15 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical" android:layout_marginBottom="10dip">
 
         <TextView 
             android:id="@+id/message_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true">
+            android:layout_alignParentTop="true"
+            android:textSize="24dip"
+            android:ellipsize="marquee">
         </TextView>
-        <TextView 
+
+		<TextView 
             android:id="@+id/message_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

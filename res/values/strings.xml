@@ -19,5 +19,7 @@
     <string name="inputpasswordmessage">Step one, your should set a password for this application.</string>
     <string name="second_step_msg">Step two, you should input a phone number,you can send order by use that number easy.</string>
     <string name="third_step_msg">Step three , now you should input a string as your designator, so application can know the different from ordering message and normal message.</string>
+	<color name="tab_label_select">#202020</color>
+	<color name="tab_label_unselect">#ffffff</color>
 
 </resources>
