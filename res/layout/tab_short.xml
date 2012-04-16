@@ -10,7 +10,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dip" />
+        android:layout_marginTop="3dip"
+        android:layout_marginBottom="-3dip" />
 
     <TextView
         android:id="@+id/tab_label"
@@ -18,7 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tab_icon"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dip"
         android:paddingBottom="10dip"
         android:layout_marginTop="0dip"
         android:ellipsize="marquee"

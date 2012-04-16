@@ -23,7 +23,6 @@ public class SecondSetpActivity extends Activity{
 		setContentView(R.layout.second_setup);
 		nextSetup = (Button) findViewById(R.id.ok_button);
 		nextSetup.setOnClickListener(new OnClickListener() {
-			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent();
 				intent.setClass(SecondSetpActivity.this, MainActivity.class);

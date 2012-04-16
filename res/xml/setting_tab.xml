@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="parent" >
+
+    <PreferenceCategory
+        android:key="ordering_message_setting"
+        android:title="@string/ordering_message_setting_title" >
+        <CheckBoxPreference
+            android:disableDependentsState="true"
+            android:key="save_ordering_message"
+            android:persistent="false"
+            android:summary="@string/save_message_summary"
+            android:title="@string/save_message" />
+        <CheckBoxPreference
+            android:disableDependentsState="true"
+            android:key="reminder_message"
+            android:persistent="false"
+            android:summary="@string/ordering_message_reminder_summary"
+            android:title="@string/ordering_message_reminder" />
+
+        <cc.co.yadong.guardianSpirit.activity.CommandSettingPreference
+            android:key="message_command_string"
+            android:persistent="false"
+            android:title="@string/ordering_message_command_string" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="ordering_setting"
+        android:title="@string/ordering_setting_title" >
+        <CheckBoxPreference />
+    </PreferenceCategory>
+
+</PreferenceScreen>

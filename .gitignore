@@ -1,2 +1,5 @@
 *.class
+*.ap_
+*.apk
+*.dex
 /bin/classes/cc/co/yadong/guardianSpirit/
