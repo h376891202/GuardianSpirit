@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, GuardianSpiritActivity!</string>
+    <string name="app_name">GuardianSpirit</string>
+
+    <string-array name="command_type">
+        <item>shutdown</item>
+        <item>reboot</item>
+        <item>sendMessage</item>
+        <item>readContacts</item>
+    </string-array>
+
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="show_password_msg">显示密码</string>
+    <string name="addpassword">添加密码</string>
+    <string name="prompt_message">你只需要几步就能够设置好你的手机.</string>
+    <string name="inputpasswordmessage">第一步,你需要为这个应用程序设置一个密码.</string>
+    <string name="second_step_msg">第二部,你需要设置一个默认手机号,当你需要的时候能够通过这个手机号简单的操作该手机.</string>
+    <string name="third_step_msg">第三部,你需要填入你的名字,以便于手机记住你.</string>
+	<color name="tab_label_select">#202020</color>
+	<color name="tab_label_unselect">#ffffff</color>
+	<string name="ordering_message_setting_title">短信命令设置</string>
+	<string name="save_message">保存短信命令</string>
+	<string name="save_message_summary">将短信命令保存以供查阅.</string>
+	<string name="ordering_message_reminder">短信命令提示</string>
+	<string name="ordering_message_reminder_summary">当收到一个短信命令的时候提示我.</string>
+	<string name="ordering_message_command_string">命令短信提示符</string>
+	<string name="ordering_setting_title">短信命令详细设置</string>
+
+</resources>

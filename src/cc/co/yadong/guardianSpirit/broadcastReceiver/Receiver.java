@@ -1,5 +1,10 @@
 package cc.co.yadong.guardianSpirit.broadcastReceiver;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import cc.co.yadong.guardianSpirit.bean.Message;
+import cc.co.yadong.guardianSpirit.handler.MessageHandler;
 import cc.co.yadong.guardianSpirit.handler.SmsHandler;
 import cc.co.yadong.guardianSpirit.handler.SmsHandlerInterface;
 import android.content.BroadcastReceiver;
@@ -11,6 +16,8 @@ import android.telephony.gsm.SmsMessage;
 public class Receiver extends BroadcastReceiver {
 	private SmsContextResove mSmsContextResove;
 	private SmsHandlerInterface smsHandler;
+	private MessageHandler handler;
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		System.out.println("yadong -- >on receive");
@@ -21,6 +28,7 @@ public class Receiver extends BroadcastReceiver {
 			Bundle bundle = intent.getExtras();
 			String msgTxt = null;
 			String commingNumber = null;
+			Message messageSave = new Message();
 			if (null != bundle) {
 				Object[] pdus = (Object[]) intent.getExtras().get("pdus");
 				for (Object p : pdus) {
@@ -28,23 +36,32 @@ public class Receiver extends BroadcastReceiver {
 					SmsMessage message = SmsMessage.createFromPdu(pdu);
 					if (null != msgTxt) {
 						msgTxt += message.getMessageBody();
-					}else{
+					} else {
 						msgTxt = message.getMessageBody();
 					}
 					commingNumber = message.getOriginatingAddress();
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTimeInMillis(message.getTimestampMillis());
+					messageSave.setMeesage_time(new SimpleDateFormat(
+							Message.MESSAGE_TIME_FORMAT).format(calendar
+							.getTime()));
+					messageSave.setMeesage_content(msgTxt);
+					messageSave.setMessage_from(commingNumber);
+					messageSave.setMessage_id(1);
 				}
-				mSmsContextResove = new SmsContextResove(context,msgTxt);
-				if(mSmsContextResove.isCommand()){
+				mSmsContextResove = new SmsContextResove(context, msgTxt);
+				if (mSmsContextResove.isCommand()) {
+					handler = new MessageHandler(context);
 					String cmd = mSmsContextResove.getCommand();
 					smsHandler = new SmsHandler(context);
 					smsHandler.switchCommand(cmd);
+					handler.insertMessage(messageSave);
 				}
-				
+
 			}
-			
+
 		} else if ("".equals(action)) {
 
 		}
 	}
-
 }

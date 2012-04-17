@@ -4,59 +4,59 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.WindowManager;
-import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import cc.co.yadong.guardianSpirit.R;
+import cc.co.yadong.guardianSpirit.bean.Message;
+import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
+import cc.co.yadong.guardianSpirit.handler.MessageHandler;
 
 public class MessageTab extends ListActivity{
 	private ListView listView;
 	private LayoutInflater factory;
+	private MessageHandler messageHandler;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		listView = getListView();
 		factory = LayoutInflater.from(this);
-		HashMap<String, String> maps = new HashMap<String, String>();
-		maps.put("1", "command:rebootcommand:reboocommand:reboocommand:reboocommand:reboo");
-		maps.put("2", "150028694343");
-		maps.put("3", "2012/12/12");
-		HashMap<String, String> maps2 = new HashMap<String, String>();
-		maps.put("1", "command:rebootcommand:reboocommand:reboocommand:reboocommand:reboocommand:reboocommand:reboo");
-		maps.put("2", "150028694343");
-		maps.put("3", "2012/12/12");
-		ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String,String>>();
-		arrayList.add(maps);
-		arrayList.add(maps2);
-		arrayList.add(new HashMap<String, String>());
-		arrayList.add(new HashMap<String, String>());
-		
-		arrayList.add(new HashMap<String, String>());
-		arrayList.add(new HashMap<String, String>());
-		arrayList.add(new HashMap<String, String>());
-		arrayList.add(new HashMap<String, String>());
-		arrayList.add(new HashMap<String, String>());arrayList.add(new HashMap<String, String>());
-		arrayList.add(new HashMap<String, String>());
-		
-		arrayList.add(new HashMap<String, String>());
+		messageHandler = new MessageHandler(this);
 		super.onCreate(savedInstanceState);
-		SimpleAdapter simpleAdapter = new SimpleAdapter(this,arrayList,R.layout.message_item,new String[]{"1","2","3"},new int []{R.id.message_content,R.id.message_phone,R.id.message_time});
+		SimpleAdapter simpleAdapter = new SimpleAdapter(this, initValue(),
+				R.layout.message_item, new String[] {
+						DatabaseHelper.MESSAGE_CLOUME_CONTENT,
+						DatabaseHelper.MESSAGE_CLOUME_FROM,
+						DatabaseHelper.MESSAGE_CLOUME_TIME }, new int[] {
+						R.id.message_content, R.id.message_phone,
+						R.id.message_time });
 		setListAdapter(simpleAdapter);
 		System.out.println("yadong"+listView);
+	}
+	private ArrayList<HashMap<String, String>> initValue() {
+		ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String,String>>();
+		List<Message> messages = messageHandler.getListOfMessage();
+		for(Message message : messages){
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put(DatabaseHelper.MESSAGE_CLOUME_CONTENT, message.getMeesage_content());
+			map.put(DatabaseHelper.MESSAGE_CLOUME_FROM, message.getMessage_from());
+			map.put(DatabaseHelper.MESSAGE_CLOUME_TIME, message.getMeesage_time());
+			map.put(DatabaseHelper.MESSAGE_CLOUME_TYPE, message.getMessage_id()+"");
+			arrayList.add(map);
+		}
+		return arrayList;
+
 	}
 	
 	@Override
