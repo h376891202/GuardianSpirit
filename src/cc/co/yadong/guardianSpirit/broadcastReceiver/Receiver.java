@@ -10,6 +10,7 @@ import cc.co.yadong.guardianSpirit.handler.SmsHandlerInterface;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.telephony.gsm.SmsMessage;
 
@@ -56,6 +57,11 @@ public class Receiver extends BroadcastReceiver {
 					smsHandler = new SmsHandler(context);
 					smsHandler.switchCommand(cmd);
 					handler.insertMessage(messageSave);
+					Intent intent2 = new Intent();
+					intent2.setAction("co.cc.yadong.new");
+					context.sendBroadcast(intent2);
+					handler.close();
+					mSmsContextResove.close();
 				}
 
 			}

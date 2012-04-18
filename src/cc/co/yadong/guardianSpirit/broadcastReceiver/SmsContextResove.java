@@ -49,5 +49,9 @@ public class SmsContextResove {
 		return adapter.getData(command);
 	}
 	
+	public void close(){
+		adapter.close();
+	}
+	
 	
 }

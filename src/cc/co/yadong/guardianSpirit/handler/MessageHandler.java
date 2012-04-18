@@ -23,14 +23,17 @@ public class MessageHandler {
 		adapter.insertMessage(message);
 	}
 	
-	public void deleteMessage(Message message){
-		adapter.deleteMessage(message.getMessage_id());
+	public void deleteMessage(int message_id){
+		adapter.deleteMessage(message_id);
 	}
 
-	public void deleteMessage(List<Message> messages){
-		for(Message message : messages){
-			deleteMessage(message);
+	public void deleteMessage(int []ids){
+		for(Integer message_id : ids){
+			deleteMessage(message_id);
 		}
+	}
+	public void close(){
+		adapter.close();
 	}
 	 
 	

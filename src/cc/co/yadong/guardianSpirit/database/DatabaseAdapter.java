@@ -22,7 +22,13 @@ public class DatabaseAdapter {
 		databaseHelper = new DatabaseHelper(mContext);
 		database = databaseHelper.getWritableDatabase();
 	}
-
+	
+	public void close(){
+		if(null != database)
+			database.close();
+		if(null != databaseHelper)
+			databaseHelper.close();
+	}
 	public void saveData(String type, String value) {
 		if (type.equals(COMMAND))
 			value = value + ":";

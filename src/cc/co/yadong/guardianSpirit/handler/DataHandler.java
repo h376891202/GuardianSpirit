@@ -22,4 +22,8 @@ public class DataHandler {
 		String md5password = MD5.getMD5Str(password);
 		databaseAdapter.saveData(DatabaseAdapter.SAVE_PASSWORD, md5password);
 	}
+	
+	public void close(){
+		databaseAdapter.close();
+	}
 }
