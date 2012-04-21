@@ -21,13 +21,10 @@
         </activity>
         <activity android:name=".activity.SecondSetpActivity"></activity>
 		<activity android:name=".activity.MainActivity">
-		     <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 		</activity>
 		<activity android:name=".activity.tab.MessageTab"></activity>
         <activity android:name=".activity.tab.SettingTab"></activity>
+        <activity android:name=".activity.IdentityCheckingActivity"></activity>
         <receiver android:name=".broadcastReceiver.Receiver" >
             <intent-filter android:priority="10000" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />

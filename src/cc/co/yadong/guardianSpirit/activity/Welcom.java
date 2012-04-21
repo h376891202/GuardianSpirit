@@ -34,7 +34,9 @@ public class Welcom extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		dataHandler = new DataHandler(this);
 		if(dataHandler.isPasswordSaved()){
-			dataHandler.close();
+			Intent intent = new Intent();
+			intent.setClass(Welcom.this, IdentityCheckingActivity.class);
+			startActivity(intent);
 			this.finish();
 		}
 		super.onCreate(savedInstanceState);
@@ -91,8 +93,8 @@ public class Welcom extends Activity implements OnClickListener{
 		
 	}
 	@Override
-	protected void onStart() {
-		super.onStart();
+	protected void onDestroy() {
+		super.onDestroy();
 		dataHandler.close();
 	}
 

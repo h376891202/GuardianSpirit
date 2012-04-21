@@ -100,6 +100,7 @@ public class DatabaseAdapter {
 					break;
 			}
 		}
+		cursor.close();
 		return messages;
 	}
 

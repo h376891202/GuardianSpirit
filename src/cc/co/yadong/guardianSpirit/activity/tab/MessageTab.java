@@ -120,7 +120,6 @@ public class MessageTab extends ListActivity {
 						"do you want delete this message").setPositiveButton(
 						"ok", new DialogInterface.OnClickListener() {
 
-							@Override
 							public void onClick(DialogInterface dialog,
 									int which) {
 								messageHandler.deleteMessage(Integer
@@ -167,8 +166,8 @@ public class MessageTab extends ListActivity {
 	}
 	
 	@Override
-	protected void onStop() {
-		super.onStop();
+	protected void onDestroy() {
+		super.onDestroy();
 		mIsInit = false;
 		messageHandler.close();
 	}

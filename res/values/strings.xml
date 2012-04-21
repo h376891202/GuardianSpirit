@@ -31,5 +31,7 @@
     <string name="ordering_message_command_string">Ordering message command</string>
     <string name="command_string_summary">Distinguish normal SMS and Ordering SMS.</string>
     <string name="ordering_setting_title">setting ordering detail</string>
+    
+    <string name="input_password_text">please input password.</string>
 
 </resources>

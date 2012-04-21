@@ -66,8 +66,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 					+ DATA_CLOUME_STORE + ") values(?,?)");
 			loadString(statement, DatabaseAdapter.COMMAND,
 					DatabaseAdapter.COMMAND);
-			loadString(statement, DatabaseAdapter.SAVE_PASSWORD,
-					DatabaseAdapter.SAVE_PASSWORD);
 			String commends[] = mContext.getResources().getStringArray(
 					R.array.command_type);
 			for (String commend : commends)
