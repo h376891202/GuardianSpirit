@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 import cc.co.yadong.guardianSpirit.R;
+import cc.co.yadong.guardianSpirit.bean.Data;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final String TAG = "DatabaseHelper";
@@ -64,22 +65,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			statement = database.compileStatement("insert into "
 					+ DATA_TABLE_NAME + "(" + DATA_CLOUME_TYPE + ","
 					+ DATA_CLOUME_STORE + ") values(?,?)");
-			loadString(statement, DatabaseAdapter.COMMAND,
+			loadCommandString(statement, DatabaseAdapter.COMMAND,
 					DatabaseAdapter.COMMAND);
 			String commends[] = mContext.getResources().getStringArray(
 					R.array.command_type);
 			for (String commend : commends)
-				loadString(statement, commend, commend);
+				loadCommandString(statement, commend, commend);
 		} finally {
 			if (null != statement)
 				statement.close();
 		}
 	}
 
-	public void loadString(SQLiteStatement statement, String key, String value) {
+	public void loadCommandString(SQLiteStatement statement, String key, String value) {
 		statement.bindString(1, key);
 		statement.bindString(2, value);
 		statement.execute();
+	}
+	
+	public void loadDataString(SQLiteStatement statement,String key,String value){
+		statement.bindString(1, Data.PASSWORD_ERROR_COUNT);
+		statement.bindString(2, 0+"");
+		
 	}
 
 }
