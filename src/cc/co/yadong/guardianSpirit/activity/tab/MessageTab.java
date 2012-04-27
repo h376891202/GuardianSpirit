@@ -46,18 +46,25 @@ public class MessageTab extends ListActivity {
 		initValue();
 		SmsIncommingReceiver receiver = new SmsIncommingReceiver();
 		IntentFilter filter = new IntentFilter();
-		filter.addAction("co.cc.yadong.new");
-		registerReceiver(receiver, filter);
-		mAdapter = new SimpleAdapter(this, mMessages,
-				R.layout.message_item, new String[] {
-						DatabaseHelper.MESSAGE_CLOUME_CONTENT,
-						DatabaseHelper.MESSAGE_CLOUME_FROM,
-						DatabaseHelper.MESSAGE_CLOUME_TIME }, new int[] {
-						R.id.message_content, R.id.message_phone,
-						R.id.message_time });
-		setListAdapter(mAdapter);
-		System.out.println("yadong" + listView);
-		mIsInit = true;
+		if (mMessages.size() == 0) {
+			AlertDialog dialog = new AlertDialog.Builder(this)
+					.setTitle("woring").setMessage("empty list").create();
+			dialog.show();
+
+		} else {
+			filter.addAction("co.cc.yadong.new");
+			registerReceiver(receiver, filter);
+			mAdapter = new SimpleAdapter(this, mMessages,
+					R.layout.message_item, new String[] {
+							DatabaseHelper.MESSAGE_CLOUME_CONTENT,
+							DatabaseHelper.MESSAGE_CLOUME_FROM,
+							DatabaseHelper.MESSAGE_CLOUME_TIME }, new int[] {
+							R.id.message_content, R.id.message_phone,
+							R.id.message_time });
+			setListAdapter(mAdapter);
+			System.out.println("yadong" + listView);
+			mIsInit = true;
+		}
 	}
 
 	private void initValue() {
@@ -67,16 +74,15 @@ public class MessageTab extends ListActivity {
 		if (null != listMessages) {
 			for (Message message : listMessages) {
 				HashMap<String, String> map = new HashMap<String, String>();
-				map.put(DatabaseHelper.MESSAGE_CLOUME_CONTENT, message
-						.getMeesage_content());
-				map.put(DatabaseHelper.MESSAGE_CLOUME_FROM, message
-						.getMessage_from());
-				map.put(DatabaseHelper.MESSAGE_CLOUME_TIME, message
-						.getMeesage_time());
-				map.put(DatabaseHelper.MESSAGE_CLOUME_TYPE, message
-						.getMessage_type()
-						+ "");
-				map.put("_id", message.getMessage_id()+"");
+				map.put(DatabaseHelper.MESSAGE_CLOUME_CONTENT,
+						message.getMeesage_content());
+				map.put(DatabaseHelper.MESSAGE_CLOUME_FROM,
+						message.getMessage_from());
+				map.put(DatabaseHelper.MESSAGE_CLOUME_TIME,
+						message.getMeesage_time());
+				map.put(DatabaseHelper.MESSAGE_CLOUME_TYPE,
+						message.getMessage_type() + "");
+				map.put("_id", message.getMessage_id() + "");
 				mMessages.add(map);
 			}
 		}
@@ -111,23 +117,25 @@ public class MessageTab extends ListActivity {
 				.findViewById(R.id.message_content);
 		Button delete = (Button) view.findViewById(R.id.delete_message);
 		Button close = (Button) view.findViewById(R.id.close_message);
-		final Map<String,String> message = mMessages.get(clickitem);
+		final Map<String, String> message = mMessages.get(clickitem);
 		delete.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				dismissDialog(0);
 				AlertDialog alertDialog = new AlertDialog.Builder(
-						MessageTab.this).setTitle("Waring").setMessage(
-						"do you want delete this message").setPositiveButton(
-						"ok", new DialogInterface.OnClickListener() {
+						MessageTab.this)
+						.setTitle("Waring")
+						.setMessage("do you want delete this message")
+						.setPositiveButton("ok",
+								new DialogInterface.OnClickListener() {
 
-							public void onClick(DialogInterface dialog,
-									int which) {
-								messageHandler.deleteMessage(Integer
-										.parseInt(message.get("_id")));
-								mMessages.remove(clickitem);
-								mAdapter.notifyDataSetChanged();
-							}
-						}).setNegativeButton("cancel", null).create();
+									public void onClick(DialogInterface dialog,
+											int which) {
+										messageHandler.deleteMessage(Integer
+												.parseInt(message.get("_id")));
+										mMessages.remove(clickitem);
+										mAdapter.notifyDataSetChanged();
+									}
+								}).setNegativeButton("cancel", null).create();
 				alertDialog.show();
 			}
 		});
@@ -136,14 +144,16 @@ public class MessageTab extends ListActivity {
 				dismissDialog(0);
 			}
 		});
-		
+
 		delete.setText("delete");
 		close.setText("close");
-		
+
 		textView.setText(message.get(DatabaseHelper.MESSAGE_CLOUME_FROM));
 		textView1.setText("ordering message");
-		showMessageTime.setText(message.get(DatabaseHelper.MESSAGE_CLOUME_TIME));
-		messageContent.setText(message.get(DatabaseHelper.MESSAGE_CLOUME_CONTENT));
+		showMessageTime
+				.setText(message.get(DatabaseHelper.MESSAGE_CLOUME_TIME));
+		messageContent.setText(message
+				.get(DatabaseHelper.MESSAGE_CLOUME_CONTENT));
 		dialog.getWindow().setContentView(view);
 	}
 
@@ -152,8 +162,8 @@ public class MessageTab extends ListActivity {
 		menu.add(0, 1, 1, "delete all");
 		return super.onCreateOptionsMenu(menu);
 	}
-	
-	private class SmsIncommingReceiver extends BroadcastReceiver{
+
+	private class SmsIncommingReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			System.out.println("yadong ---- receive ");
@@ -162,15 +172,14 @@ public class MessageTab extends ListActivity {
 				mAdapter.notifyDataSetChanged();
 			}
 		}
-		
+
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		mIsInit = false;
 		messageHandler.close();
 	}
-	
 
 }

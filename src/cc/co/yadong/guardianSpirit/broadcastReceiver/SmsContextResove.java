@@ -1,5 +1,6 @@
 package cc.co.yadong.guardianSpirit.broadcastReceiver;
 
+import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.database.DatabaseAdapter;
 import android.content.Context;
 import android.util.Log;
@@ -35,7 +36,7 @@ public class SmsContextResove {
 	 * @return
 	 */
 	protected String getCommandString(){
-		String commandString = adapter.getData(DatabaseAdapter.COMMAND);
+		String commandString = adapter.getData(Data.COMMAND_STRING);
 		Log.v(TAG,commandString);
 		return commandString;
 	}

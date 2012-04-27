@@ -24,6 +24,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String MESSAGE_CLOUME_TIME = "time";
 	public static final String MESSAGE_CLOUME_CONTENT = "content";
 	public static final String MESSAGE_CLOUME_TYPE = "type";
+	public static final String BOOLEAN_TRUE  = "1";
+	public static final String BOOLEAN_FLASE = "0";
 	private Context mContext;
 
 	public DatabaseHelper(Context context) {
@@ -65,28 +67,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			statement = database.compileStatement("insert into "
 					+ DATA_TABLE_NAME + "(" + DATA_CLOUME_TYPE + ","
 					+ DATA_CLOUME_STORE + ") values(?,?)");
-			loadCommandString(statement, DatabaseAdapter.COMMAND,
-					DatabaseAdapter.COMMAND);
+			loadDataString(statement, Data.COMMAND_STRING,
+					Data.COMMAND_STRING);
 			String commends[] = mContext.getResources().getStringArray(
 					R.array.command_type);
 			for (String commend : commends)
-				loadCommandString(statement, commend, commend);
+				loadDataString(statement, commend, commend);
+			loadDataString(statement,Data.PASSWORD_ERROR_COUNT,0+"");
+			loadDataBoolean(statement, Data.SAVE_MESSAGE, true);
+			loadDataBoolean(statement, Data.NOTIFY_WHEN_HAVA_MESSAGE, true);
 		} finally {
 			if (null != statement)
 				statement.close();
 		}
 	}
 
-	public void loadCommandString(SQLiteStatement statement, String key, String value) {
+	public void loadDataString(SQLiteStatement statement, String key, String value) {
 		statement.bindString(1, key);
 		statement.bindString(2, value);
 		statement.execute();
 	}
 	
-	public void loadDataString(SQLiteStatement statement,String key,String value){
-		statement.bindString(1, Data.PASSWORD_ERROR_COUNT);
-		statement.bindString(2, 0+"");
-		
+	public void loadDataBoolean(SQLiteStatement statement,String key, boolean value) {
+		if(value){
+			loadDataString(statement, key,BOOLEAN_TRUE);
+		}else{
+			loadDataString(statement, key, BOOLEAN_FLASE);
+		}
 	}
+	
 
 }

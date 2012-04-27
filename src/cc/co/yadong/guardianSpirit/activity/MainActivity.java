@@ -44,8 +44,8 @@ public class MainActivity extends TabActivity implements OnTabChangeListener {
 		TabWidget tabWidget = mTabHost.getTabWidget();
 		tabWidget.setBackgroundResource(R.drawable.tab_bg);
 		mLayoutInflater = LayoutInflater.from(this);
-		setupMessageTab();
 		setupSettingTab();
+		setupMessageTab();
 		mTabHost.setOnTabChangedListener(this);
 		views.get(mTabHost.getCurrentTabTag()).setTextColor(
 				getResources().getColor(R.color.tab_label_select));

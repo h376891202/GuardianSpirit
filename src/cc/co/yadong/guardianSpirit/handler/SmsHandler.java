@@ -3,14 +3,18 @@ package cc.co.yadong.guardianSpirit.handler;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import cc.co.yadong.guardianSpirit.R;
 import android.content.Context;
-import android.os.PowerManager;
 import android.util.Log;
+import cc.co.yadong.guardianSpirit.R;
+import cc.co.yadong.guardianSpirit.bean.Data;
+import cc.co.yadong.guardianSpirit.bean.Message;
+import cc.co.yadong.guardianSpirit.database.DatabaseAdapter;
+import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
 
 public class SmsHandler implements SmsHandlerInterface{
 	private static final String TAG = "SmsHandler";
 	private Context mContext;
+	private DatabaseAdapter databaseAdapter;
 	private ArrayList<String> commandType = new ArrayList<String>();
 	
 	public SmsHandler(Context context){
@@ -22,7 +26,7 @@ public class SmsHandler implements SmsHandlerInterface{
 	 */
 	public void reboot() {
 		Log.v(TAG, "reboot system");
-		((PowerManager)mContext.getSystemService("power")).reboot(null);
+//		((PowerManager)mContext.getSystemService("power")).reboot(null);
 	}
 
 	public void shutdown() {
@@ -60,6 +64,24 @@ public class SmsHandler implements SmsHandlerInterface{
 			break;
 		}
 	}
+	
+	public void close(){
+		databaseAdapter.close();
+	}
+	
+	public void saveMessage(Message message) {
+		if(DatabaseHelper.BOOLEAN_TRUE.equals(databaseAdapter.getData(Data.SAVE_MESSAGE))){
+			databaseAdapter.insertMessage(message);
+		}
+	}
+	
+	public String getforwardNumber(){
+		if(DatabaseHelper.BOOLEAN_TRUE.equals(databaseAdapter.getData(Data.FORWARD_SMS)))
+			return databaseAdapter.getData(Data.FORWARD_NUMBER);
+		return null;
+	}
+
+
 	
 	
 }

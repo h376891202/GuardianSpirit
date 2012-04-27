@@ -8,11 +8,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import cc.co.yadong.guardianSpirit.bean.Contact;
+import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.bean.Message;
 
 public class DatabaseAdapter {
-	public static final String SAVE_PASSWORD = "password";
-	public static final String COMMAND = "command";
 	private DatabaseHelper databaseHelper;
 	private SQLiteDatabase database;
 	private Context mContext;
@@ -30,7 +29,7 @@ public class DatabaseAdapter {
 			databaseHelper.close();
 	}
 	public void saveData(String type, String value) {
-		if (type.equals(COMMAND))
+		if (type.equals(Data.COMMAND_STRING))
 			value = value + ":";
 		ContentValues values = new ContentValues();
 		values.put(DatabaseHelper.DATA_CLOUME_TYPE, type);

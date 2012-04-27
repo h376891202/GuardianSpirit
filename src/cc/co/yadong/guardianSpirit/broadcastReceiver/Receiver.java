@@ -56,12 +56,8 @@ public class Receiver extends BroadcastReceiver {
 					String cmd = mSmsContextResove.getCommand();
 					smsHandler = new SmsHandler(context);
 					smsHandler.switchCommand(cmd);
-					handler.insertMessage(messageSave);
-					Intent intent2 = new Intent();
-					intent2.setAction("co.cc.yadong.new");
-					context.sendBroadcast(intent2);
+					smsHandler.saveMessage(messageSave);
 					handler.close();
-					mSmsContextResove.close();
 				}
 
 			}
