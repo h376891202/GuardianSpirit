@@ -21,6 +21,7 @@ public class IdentityCheckingActivity extends Activity implements
 	private DataHandler dataHandler;
 	private TextView mTextView;
 	private static final int ALLOW_MAX_ERROR_TIME = 3;
+	private boolean mIsMaxErrorTime = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,9 @@ public class IdentityCheckingActivity extends Activity implements
 		mButton.setOnClickListener(this);
 		mButton.setEnabled(false);
 		dataHandler = new DataHandler(this);
+		mIsMaxErrorTime = dataHandler.getErrorTime() >= ALLOW_MAX_ERROR_TIME;
+		if(mIsMaxErrorTime)
+			mTextView.setVisibility(View.VISIBLE);
 	}
 
 	public void onClick(View v) {
@@ -75,7 +79,7 @@ public class IdentityCheckingActivity extends Activity implements
 	}
 
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-		if (s.length() < 1)
+		if (s.length() < 1 || mIsMaxErrorTime)
 			mButton.setEnabled(false);
 		else
 			mButton.setEnabled(true);

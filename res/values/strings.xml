@@ -33,5 +33,6 @@
     <string name="ordering_setting_title">setting ordering detail</string>
     
     <string name="input_password_text">please input password for this application.</string>
+    <string name="empty_list">empty list</string>
 
 </resources>

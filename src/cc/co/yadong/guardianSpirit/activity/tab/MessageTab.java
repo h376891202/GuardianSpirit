@@ -36,9 +36,13 @@ public class MessageTab extends ListActivity {
 	private SimpleAdapter mAdapter;
 	private ArrayList<HashMap<String, String>> mMessages;
 	private boolean mIsInit = false;
+	private TextView mEmptyView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		setContentView(R.layout.odering_message_list);
+		mEmptyView = (TextView)findViewById(R.id.emptyView);
+		mEmptyView.setVisibility(View.GONE);
 		listView = getListView();
 		factory = LayoutInflater.from(this);
 		messageHandler = new MessageHandler(this);
@@ -47,10 +51,7 @@ public class MessageTab extends ListActivity {
 		SmsIncommingReceiver receiver = new SmsIncommingReceiver();
 		IntentFilter filter = new IntentFilter();
 		if (mMessages.size() == 0) {
-			AlertDialog dialog = new AlertDialog.Builder(this)
-					.setTitle("woring").setMessage("empty list").create();
-			dialog.show();
-
+	        mEmptyView.setVisibility(View.VISIBLE);
 		} else {
 			filter.addAction("co.cc.yadong.new");
 			registerReceiver(receiver, filter);
@@ -66,7 +67,11 @@ public class MessageTab extends ListActivity {
 			mIsInit = true;
 		}
 	}
-
+	private void checkListIsEmpty(){
+		if (mMessages.size() == 0) {
+	        mEmptyView.setVisibility(View.VISIBLE);
+		}
+	}
 	private void initValue() {
 		System.out.println("YADONG ----- INIT VALUE");
 		mMessages = new ArrayList<HashMap<String, String>>();
@@ -134,6 +139,7 @@ public class MessageTab extends ListActivity {
 												.parseInt(message.get("_id")));
 										mMessages.remove(clickitem);
 										mAdapter.notifyDataSetChanged();
+										checkListIsEmpty();
 									}
 								}).setNegativeButton("cancel", null).create();
 				alertDialog.show();
