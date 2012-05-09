@@ -28,6 +28,11 @@ public class SettingTab extends PreferenceActivity {
 		boolean isRemindeMessage = dataHandler.isNotifySelect();
 		if (remindeMessage != null)
 			remindeMessage.setPersistent(isRemindeMessage);
-
+	}
+	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		dataHandler.close();
 	}
 }

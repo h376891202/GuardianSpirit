@@ -1,16 +1,13 @@
 package cc.co.yadong.guardianSpirit.handler;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.util.Log;
-import android.widget.CheckBox;
 import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.database.DatabaseAdapter;
 import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
 import cc.co.yadong.guardianSpirit.util.MD5;
+import cc.co.yadong.guardianSpirit.util.Xlog;
 
 public class DataHandler{
-	private static final String TAG = "DataHandler";
 	private DatabaseAdapter databaseAdapter;
 	public DataHandler(Context context){
 		this.databaseAdapter = new DatabaseAdapter(context);
@@ -35,7 +32,7 @@ public class DataHandler{
 		try {
 			output = Integer.parseInt(time);
 		} catch (NumberFormatException e) {
-			Log.e(TAG, "Number format exception for pase password error time");
+			Xlog.defualV("Number format exception for pase password error time");
 			output = 4;
 		}
 		return output;

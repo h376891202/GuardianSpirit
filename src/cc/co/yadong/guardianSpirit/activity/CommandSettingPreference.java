@@ -59,10 +59,16 @@ public class CommandSettingPreference extends EditTextPreference implements Text
 		}
 		
 	}
-
+	
 	public void beforeTextChanged(CharSequence s, int start, int count,
 			int after) {}
 
 	public void onTextChanged(CharSequence s, int start, int before, int count) {}
+	
+	@Override
+	public void onActivityDestroy() {
+		super.onActivityDestroy();
+		dataHandler.close();
+	}
 
 }

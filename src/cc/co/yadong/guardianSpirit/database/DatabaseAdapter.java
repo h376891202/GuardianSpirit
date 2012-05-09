@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import cc.co.yadong.guardianSpirit.bean.Contact;
 import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.bean.Message;
+import cc.co.yadong.guardianSpirit.util.Xlog;
 
 public class DatabaseAdapter {
 	private DatabaseHelper databaseHelper;
@@ -120,7 +121,14 @@ public class DatabaseAdapter {
 	}
 	
 	public void deleteMessage(int id){
-		String sql = "delete from "+DatabaseHelper.MESSAGE_TABLE_NAME +" where _id = "+id;
-		database.execSQL(sql);
+		Xlog.defualV("delete message id = "+id);
+		StringBuilder sql = new StringBuilder("delete from ");
+		sql.append(DatabaseHelper.MESSAGE_TABLE_NAME);
+		if (id != -1) {
+			sql.append(" where _id = ");
+			sql.append(id+"");
+		}
+		database.execSQL(sql.toString());
 	}
+	
 }

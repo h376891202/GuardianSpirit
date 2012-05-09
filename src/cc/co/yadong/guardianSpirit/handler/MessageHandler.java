@@ -32,6 +32,10 @@ public class MessageHandler {
 			deleteMessage(message_id);
 		}
 	}
+	public void deleteAllMessage() {
+		adapter.deleteMessage(-1);
+	}
+	
 	public void close(){
 		adapter.close();
 	}

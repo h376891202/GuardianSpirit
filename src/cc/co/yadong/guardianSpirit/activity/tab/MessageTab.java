@@ -17,6 +17,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import cc.co.yadong.guardianSpirit.R;
 import cc.co.yadong.guardianSpirit.bean.Message;
 import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
 import cc.co.yadong.guardianSpirit.handler.MessageHandler;
+import cc.co.yadong.guardianSpirit.util.Xlog;
 
 public class MessageTab extends ListActivity {
 	private ListView listView;
@@ -41,7 +43,7 @@ public class MessageTab extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		setContentView(R.layout.odering_message_list);
-		mEmptyView = (TextView)findViewById(R.id.emptyView);
+		mEmptyView = (TextView) findViewById(R.id.emptyView);
 		mEmptyView.setVisibility(View.GONE);
 		listView = getListView();
 		factory = LayoutInflater.from(this);
@@ -51,29 +53,30 @@ public class MessageTab extends ListActivity {
 		SmsIncommingReceiver receiver = new SmsIncommingReceiver();
 		IntentFilter filter = new IntentFilter();
 		if (mMessages.size() == 0) {
-	        mEmptyView.setVisibility(View.VISIBLE);
-		} else {
-			filter.addAction("co.cc.yadong.new");
-			registerReceiver(receiver, filter);
-			mAdapter = new SimpleAdapter(this, mMessages,
-					R.layout.message_item, new String[] {
-							DatabaseHelper.MESSAGE_CLOUME_CONTENT,
-							DatabaseHelper.MESSAGE_CLOUME_FROM,
-							DatabaseHelper.MESSAGE_CLOUME_TIME }, new int[] {
-							R.id.message_content, R.id.message_phone,
-							R.id.message_time });
-			setListAdapter(mAdapter);
-			System.out.println("yadong" + listView);
-			mIsInit = true;
+			mEmptyView.setVisibility(View.VISIBLE);
 		}
+		filter.addAction("co.cc.yadong.new");
+		registerReceiver(receiver, filter);
+		mAdapter = new SimpleAdapter(this, mMessages, R.layout.message_item,
+				new String[] { DatabaseHelper.MESSAGE_CLOUME_CONTENT,
+						DatabaseHelper.MESSAGE_CLOUME_FROM,
+						DatabaseHelper.MESSAGE_CLOUME_TIME }, new int[] {
+						R.id.message_content, R.id.message_phone,
+						R.id.message_time });
+		setListAdapter(mAdapter);
+		System.out.println("yadong" + listView);
+		mIsInit = true;
+
 	}
-	private void checkListIsEmpty(){
+
+	private void checkListIsEmpty() {
 		if (mMessages.size() == 0) {
-	        mEmptyView.setVisibility(View.VISIBLE);
+			mEmptyView.setVisibility(View.VISIBLE);
 		}
 	}
+
 	private void initValue() {
-		System.out.println("YADONG ----- INIT VALUE");
+		Xlog.defualV(" INIT VALUE");
 		mMessages = new ArrayList<HashMap<String, String>>();
 		List<Message> listMessages = messageHandler.getListOfMessage();
 		if (null != listMessages) {
@@ -168,19 +171,35 @@ public class MessageTab extends ListActivity {
 		menu.add(0, 1, 1, "delete all");
 		return super.onCreateOptionsMenu(menu);
 	}
-
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		messageHandler.deleteAllMessage();
+		reFlashList();
+		return super.onOptionsItemSelected(item);
+	}
 	private class SmsIncommingReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			System.out.println("yadong ---- receive ");
-			if (mIsInit) {
-				initValue();
-				mAdapter.notifyDataSetChanged();
-			}
+			Xlog.defualV("receive aciton="+intent.getAction());
+			reFlashList();
 		}
 
 	}
 
+	private void reFlashList() {
+		if (mIsInit) {
+			initValue();
+			mAdapter = new SimpleAdapter(MessageTab.this, mMessages,
+					R.layout.message_item, new String[] {
+							DatabaseHelper.MESSAGE_CLOUME_CONTENT,
+							DatabaseHelper.MESSAGE_CLOUME_FROM,
+							DatabaseHelper.MESSAGE_CLOUME_TIME }, new int[] {
+							R.id.message_content, R.id.message_phone,
+							R.id.message_time });
+			setListAdapter(mAdapter);
+		}
+	}
+	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

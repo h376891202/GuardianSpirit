@@ -19,6 +19,7 @@ public class SmsHandler implements SmsHandlerInterface{
 	
 	public SmsHandler(Context context){
 		mContext = context;
+		databaseAdapter = new DatabaseAdapter(context);
 		Collections.addAll(commandType, mContext.getResources().getStringArray(R.array.command_type));
 	}
 	/**
@@ -79,6 +80,36 @@ public class SmsHandler implements SmsHandlerInterface{
 		if(DatabaseHelper.BOOLEAN_TRUE.equals(databaseAdapter.getData(Data.FORWARD_SMS)))
 			return databaseAdapter.getData(Data.FORWARD_NUMBER);
 		return null;
+	}
+	public boolean isCommand(String mSmsContext){
+		if(null == mSmsContext)
+			return false;
+		if(mSmsContext.indexOf(getCommandString()) != -1){
+			if(mSmsContext.indexOf(":") == -1 && mSmsContext.indexOf(":")==mSmsContext.length()){
+				Log.v(TAG, "Commant format error");
+				return false;
+			}
+			return true;
+		}else{
+			return false;
+		}
+	}
+	private String getCommandString(){
+		String commandString = databaseAdapter.getData(Data.COMMAND_STRING);
+		Log.v(TAG,commandString);
+		return commandString;
+	}
+	public String getCommand(String mSmsContext){
+		String command =  mSmsContext.substring(mSmsContext.lastIndexOf(":")+1).trim();
+		//TODO
+		return databaseAdapter.getData(command);
+	}
+	
+	public boolean isRightSender(String senderNumber) {
+		String realSenderNumber = databaseAdapter.getData(Data.FORWARD_NUMBER);
+		if(realSenderNumber == null)
+			return false;
+		return realSenderNumber.equals(senderNumber);
 	}
 
 
