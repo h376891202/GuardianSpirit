@@ -71,7 +71,11 @@ public final class R {
         public static final int app_name=0x7f050001;
         public static final int cancel=0x7f050003;
         public static final int command_string_summary=0x7f050010;
+        public static final int delete_picture_function=0x7f05001a;
+        public static final int delete_picture_function_description=0x7f05001b;
         public static final int empty_list=0x7f050013;
+        public static final int forward_sms_function=0x7f050016;
+        public static final int forward_sms_function_description=0x7f050017;
         public static final int hello=0x7f050000;
         public static final int input_password_text=0x7f050012;
         public static final int inputpasswordmessage=0x7f050007;
@@ -82,10 +86,14 @@ public final class R {
         public static final int ordering_message_setting_title=0x7f05000a;
         public static final int ordering_setting_title=0x7f050011;
         public static final int prompt_message=0x7f050006;
+        public static final int read_send_contacts_function=0x7f050018;
+        public static final int read_send_contacts_function_description=0x7f050019;
         public static final int save_message=0x7f05000b;
         public static final int save_message_summary=0x7f05000c;
         public static final int second_step_msg=0x7f050008;
         public static final int show_password_msg=0x7f050004;
+        public static final int shutdown_reboot_function=0x7f050014;
+        public static final int shutdown_reboot_function_description=0x7f050015;
         public static final int third_step_msg=0x7f050009;
     }
     public static final class xml {

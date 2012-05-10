@@ -34,5 +34,12 @@
     
     <string name="input_password_text">please input password for this application.</string>
     <string name="empty_list">empty list</string>
-
+    <string name="shutdown_reboot_function">Shutdown and reboot.</string>
+    <string name="shutdown_reboot_function_description">allow ordering message shutdown or reboot phone.</string>
+	<string name="forward_sms_function">Forward sms.</string>
+	<string name="forward_sms_function_description">allow oredering message forward all sms.</string>
+	<string name="read_send_contacts_function">Read and send contacts.</string>
+	<string name="read_send_contacts_function_description">Read and send contacts to the default phone number.</string>
+	<string name="delete_picture_function">Delete picture</string>
+	<string name="delete_picture_function_description">allow oredering message delete all picture.</string>
 </resources>

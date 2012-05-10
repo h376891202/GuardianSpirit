@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-    android:key="parent" >
+    android:key="parent"  >
 
     <PreferenceCategory
         android:key="ordering_message_setting"
@@ -26,7 +26,30 @@
     <PreferenceCategory
         android:key="ordering_setting"
         android:title="@string/ordering_setting_title" >
-        <CheckBoxPreference />
+        <CheckBoxPreference 
+            android:disableDependentsState="true"
+            android:key="open_shutdown_reboot_function"
+            android:persistent="false"
+            android:summary="@string/shutdown_reboot_function_description"
+            android:title="@string/shutdown_reboot_function"/>
+        <CheckBoxPreference 
+            android:disableDependentsState="true"
+            android:key="forward_sms"
+            android:persistent="false"
+            android:summary="@string/forward_sms_function_description"
+            android:title="@string/forward_sms_function"/>
+        <CheckBoxPreference
+            android:disableDependentsState="true" 
+            android:key="read_send_contacts"
+            android:persistent="false"
+            android:summary="@string/read_send_contacts_function_description"
+            android:title="@string/read_send_contacts_function"/>
+		<CheckBoxPreference
+		    android:disableDependentsState="true" 
+		    android:key="delete_picture"
+		    android:persistent="false"
+		    android:summary="@string/delete_picture_function_description"
+		    android:title="@string/delete_picture_function"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
