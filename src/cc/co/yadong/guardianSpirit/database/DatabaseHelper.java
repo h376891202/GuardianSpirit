@@ -26,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String MESSAGE_CLOUME_TYPE = "type";
 	public static final String BOOLEAN_TRUE  = "1";
 	public static final String BOOLEAN_FLASE = "0";
+	public static final String ID = "_id";
 	private Context mContext;
 
 	public DatabaseHelper(Context context) {
@@ -35,11 +36,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		String sql = "create table " + WHITE_AND_BLACK_TABLE_NAME + "(_id Integer PRIMARY KEY AUTOINCREMENT, "+WHITE_AND_BLACK_CLOUME_NAME + " String NOT NULL,"+
+		String sql = "create table " + WHITE_AND_BLACK_TABLE_NAME + "( _id Integer PRIMARY KEY AUTOINCREMENT, "+WHITE_AND_BLACK_CLOUME_NAME + " String NOT NULL,"+
 				WHITE_AND_BLACK_CLOUME_NUMBER+" String NOT NULL,"+WHITE_AND_BLACK_CLOUME_TYPE+" Integer NOT NULL)";
-		String sql1 = "create table " + DATA_TABLE_NAME + "(_id Integer PRIMARY KEY AUTOINCREMENT ,"+DATA_CLOUME_TYPE+" String NOT NULL,"+DATA_CLOUME_STORE + 
+		String sql1 = "create table " + DATA_TABLE_NAME + "( _id Integer PRIMARY KEY AUTOINCREMENT ,"+DATA_CLOUME_TYPE+" String NOT NULL,"+DATA_CLOUME_STORE + 
 				" String NOT NULL)";
-		String sql2 = "create table " + MESSAGE_TABLE_NAME + "(_ID Integer PRIMARY KEY AUTOINCREMENT ,"+MESSAGE_CLOUME_CONTENT+" String NOT NULL, "+MESSAGE_CLOUME_FROM+ " String NOT NULL ,"+
+		String sql2 = "create table " + MESSAGE_TABLE_NAME + "( _id Integer PRIMARY KEY AUTOINCREMENT ,"+MESSAGE_CLOUME_CONTENT+" String NOT NULL, "+MESSAGE_CLOUME_FROM+ " String NOT NULL ,"+
 		MESSAGE_CLOUME_TIME+" String NOT NULL , "+MESSAGE_CLOUME_TYPE+" Integer NOT NULL)";
 		Log.v(TAG, "sql = "+sql+"\n sql1 = "+sql1);
 		db.execSQL(sql);

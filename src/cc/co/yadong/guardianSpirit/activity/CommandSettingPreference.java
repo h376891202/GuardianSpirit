@@ -11,8 +11,9 @@ import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class CommandSettingPreference extends EditTextPreference implements TextWatcher{
-	private final static String DEFAULT_COMMAND_STRING = "command:";
+public class CommandSettingPreference extends EditTextPreference implements
+		TextWatcher {
+	private final static String DEFAULT_COMMAND_STRING = "command";
 	private String summary;
 	private DataHandler dataHandler;
 
@@ -31,17 +32,20 @@ public class CommandSettingPreference extends EditTextPreference implements Text
 		EditText editText = getEditText();
 		editText.addTextChangedListener(this);
 	}
+
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
 		super.onClick(dialog, which);
-		if(which == DialogInterface.BUTTON_POSITIVE){
-			String s =  getEditText().getText().toString() ;
-			if(null != s && !"".equals(s)){
+		if (which == DialogInterface.BUTTON_POSITIVE) {
+			String s = getEditText().getText().toString();
+			if (null != s && !"".equals(s) && !s.equals(summary)) {
 				dataHandler.saveData(Data.COMMAND_STRING, s);
+				summary = s;
 				setSummary(s);
 			}
 		}
 	}
+
 	@Override
 	protected void onClick() {
 		super.onClick();
@@ -54,21 +58,21 @@ public class CommandSettingPreference extends EditTextPreference implements Text
 	}
 
 	public void afterTextChanged(Editable s) {
-		if(null != s && s.length() > 0){
+		if (null != s && s.length() > 0) {
 			setSummary(s);
 		}
-		
+
 	}
-	
+
 	public void beforeTextChanged(CharSequence s, int start, int count,
-			int after) {}
-
-	public void onTextChanged(CharSequence s, int start, int before, int count) {}
-	
-	@Override
-	public void onActivityDestroy() {
-		super.onActivityDestroy();
-		dataHandler.close();
+			int after) {
 	}
 
+	public void onTextChanged(CharSequence s, int start, int before, int count) {
+	}
+	
+	public void close(){
+		if(null != dataHandler)
+			dataHandler.close();
+	}
 }

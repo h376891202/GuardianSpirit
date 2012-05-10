@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -126,6 +127,7 @@ public class MessageTab extends ListActivity {
 		Button delete = (Button) view.findViewById(R.id.delete_message);
 		Button close = (Button) view.findViewById(R.id.close_message);
 		final Map<String, String> message = mMessages.get(clickitem);
+		Xlog.defualV("create dialog! clickitem = "+clickitem +"message = "+message);
 		delete.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				dismissDialog(0);
@@ -207,4 +209,5 @@ public class MessageTab extends ListActivity {
 		messageHandler.close();
 	}
 
+	
 }

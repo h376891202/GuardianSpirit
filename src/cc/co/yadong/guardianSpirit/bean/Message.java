@@ -8,6 +8,12 @@ public class Message {
 	private String meesage_content;
 	private int message_type;
 
+	@Override
+	public String toString() {
+		return message_id + " | " + message_from + " | " + meesage_time + " | "
+				+ meesage_content;
+	}
+
 	public int getMessage_id() {
 		return message_id;
 	}

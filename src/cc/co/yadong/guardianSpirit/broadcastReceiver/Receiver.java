@@ -3,17 +3,16 @@ package cc.co.yadong.guardianSpirit.broadcastReceiver;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.telephony.gsm.SmsMessage;
 import cc.co.yadong.guardianSpirit.bean.Message;
 import cc.co.yadong.guardianSpirit.handler.MessageHandler;
 import cc.co.yadong.guardianSpirit.handler.SmsHandler;
 import cc.co.yadong.guardianSpirit.handler.SmsHandlerInterface;
 import cc.co.yadong.guardianSpirit.util.Xlog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentSender.SendIntentException;
-import android.os.Bundle;
-import android.telephony.gsm.SmsMessage;
 
 public class Receiver extends BroadcastReceiver {
 	private SmsHandlerInterface smsHandler;

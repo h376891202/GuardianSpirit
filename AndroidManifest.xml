@@ -14,13 +14,14 @@
         <activity
             android:name=".activity.Welcom"
             android:label="@string/app_name" >
-              <intent-filter>
+             
+        </activity>
+        <activity android:name=".activity.SecondSetpActivity"></activity>
+		<activity android:name=".activity.MainActivity" android:configChanges="orientation|keyboardHidden">
+		     <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".activity.SecondSetpActivity"></activity>
-		<activity android:name=".activity.MainActivity">
 		</activity>
 		<activity android:name=".activity.tab.MessageTab"></activity>
         <activity android:name=".activity.tab.SettingTab"></activity>

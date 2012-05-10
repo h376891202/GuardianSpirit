@@ -6,6 +6,7 @@ import java.util.Map;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,9 +22,9 @@ import android.widget.TextView;
 import cc.co.yadong.guardianSpirit.R;
 import cc.co.yadong.guardianSpirit.activity.tab.MessageTab;
 import cc.co.yadong.guardianSpirit.activity.tab.SettingTab;
+import cc.co.yadong.guardianSpirit.util.Xlog;
 
 public class MainActivity extends TabActivity implements OnTabChangeListener {
-	private static final String TAG = "MainActivity";
 	private static final String MESSAGE_LIST_ACTIVITY = "message_tab";
 	private static final String SETTING_ACTIVITY = "setting_tab";
 
@@ -36,7 +37,7 @@ public class MainActivity extends TabActivity implements OnTabChangeListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		Log.v(TAG, "-----------------------oncreate()");
+		Xlog.defualV("-----------------------oncreate()");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		mIntent = getIntent();
 		mTabHost = getTabHost();
@@ -101,4 +102,9 @@ public class MainActivity extends TabActivity implements OnTabChangeListener {
 
 	}
 
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		Xlog.defualV("on onContentChanged");
+		super.onConfigurationChanged(newConfig);
+	}
 }

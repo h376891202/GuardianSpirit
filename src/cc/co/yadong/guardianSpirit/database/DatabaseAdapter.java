@@ -8,7 +8,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import cc.co.yadong.guardianSpirit.bean.Contact;
-import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.bean.Message;
 import cc.co.yadong.guardianSpirit.util.Xlog;
 
@@ -30,8 +29,7 @@ public class DatabaseAdapter {
 			databaseHelper.close();
 	}
 	public void saveData(String type, String value) {
-		if (type.equals(Data.COMMAND_STRING))
-			value = value + ":";
+		Xlog.defualV("saveData type="+type+" value="+value);
 		ContentValues values = new ContentValues();
 		values.put(DatabaseHelper.DATA_CLOUME_TYPE, type);
 		values.put(DatabaseHelper.DATA_CLOUME_STORE, value);
@@ -46,6 +44,7 @@ public class DatabaseAdapter {
 	}
 
 	public String getData(String type) {
+		Xlog.defualV("getData type="+type);
 		Cursor cursor = database.query(DatabaseHelper.DATA_TABLE_NAME,
 				new String[] { DatabaseHelper.DATA_CLOUME_STORE },
 				DatabaseHelper.DATA_CLOUME_TYPE + " = ?",
@@ -80,7 +79,9 @@ public class DatabaseAdapter {
 	public List<Message> getListOfMessage() {
 		List<Message> messages = null;
 		Cursor cursor = database.query(DatabaseHelper.MESSAGE_TABLE_NAME,
-				new String[] { DatabaseHelper.MESSAGE_CLOUME_CONTENT,
+				new String[] { 
+						DatabaseHelper.ID,
+						DatabaseHelper.MESSAGE_CLOUME_CONTENT,
 						DatabaseHelper.MESSAGE_CLOUME_FROM,
 						DatabaseHelper.MESSAGE_CLOUME_TIME,
 						DatabaseHelper.MESSAGE_CLOUME_TYPE }, null, null, null,
@@ -91,6 +92,7 @@ public class DatabaseAdapter {
 			messages = new ArrayList<Message>();
 			while(true){
 				Message message = new Message();
+				message.setMessage_id(getIntVaue(cursor,DatabaseHelper.ID));
 				message.setMeesage_content(getStringValue(cursor, DatabaseHelper.MESSAGE_CLOUME_CONTENT));
 				message.setMeesage_time(getStringValue(cursor, DatabaseHelper.MESSAGE_CLOUME_TIME));
 				message.setMessage_from(getStringValue(cursor, DatabaseHelper.MESSAGE_CLOUME_FROM));
@@ -108,10 +110,12 @@ public class DatabaseAdapter {
 		return cursor.getString(cursor.getColumnIndex(cloumeName));
 	}
 	public int getIntVaue(Cursor cursor, String cloumeName) {
+		Xlog.defualV("cloume index = "+cursor.getColumnIndex(cloumeName));
 		return cursor.getInt(cursor.getColumnIndex(cloumeName));
 	}
 	
 	public void insertMessage(Message message){
+		Xlog.defualV("insertMessage -->"+message);
 		ContentValues values = new ContentValues();
 		values.put(DatabaseHelper.MESSAGE_CLOUME_CONTENT, message.getMeesage_content());
 		values.put(DatabaseHelper.MESSAGE_CLOUME_FROM, message.getMessage_from());
