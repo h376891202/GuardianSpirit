@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     android:key="parent"  >
-
+	
+     <cc.co.yadong.guardianSpirit.activity.tab.SettingPreference
+            android:disableDependentsState="true"
+            android:key="open_service"
+            android:persistent="false"
+            android:summary="@string/open_service_description"
+            android:title="@string/open_service" />
+     
     <PreferenceCategory
         android:key="ordering_message_setting"
         android:title="@string/ordering_message_setting_title" >
@@ -18,7 +25,7 @@
             android:summary="@string/ordering_message_reminder_summary"
             android:title="@string/ordering_message_reminder" />
 
-        <cc.co.yadong.guardianSpirit.activity.CommandSettingPreference
+        <cc.co.yadong.guardianSpirit.activity.tab.CommandSettingPreference
             android:key="message_command_string"
             android:persistent="false"
             android:title="@string/ordering_message_command_string" />

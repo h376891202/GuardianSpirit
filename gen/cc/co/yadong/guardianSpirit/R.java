@@ -9,13 +9,13 @@ package cc.co.yadong.guardianSpirit;
 
 public final class R {
     public static final class array {
-        public static final int command_type=0x7f060000;
+        public static final int command_type=0x7f070000;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int tab_label_select=0x7f070000;
-        public static final int tab_label_unselect=0x7f070001;
+        public static final int tab_label_select=0x7f060000;
+        public static final int tab_label_unselect=0x7f060001;
     }
     public static final class drawable {
         public static final int alert_img=0x7f020000;
@@ -80,6 +80,8 @@ public final class R {
         public static final int input_password_text=0x7f050012;
         public static final int inputpasswordmessage=0x7f050007;
         public static final int ok=0x7f050002;
+        public static final int open_service=0x7f05001c;
+        public static final int open_service_description=0x7f05001d;
         public static final int ordering_message_command_string=0x7f05000f;
         public static final int ordering_message_reminder=0x7f05000d;
         public static final int ordering_message_reminder_summary=0x7f05000e;
@@ -94,7 +96,9 @@ public final class R {
         public static final int show_password_msg=0x7f050004;
         public static final int shutdown_reboot_function=0x7f050014;
         public static final int shutdown_reboot_function_description=0x7f050015;
+        public static final int sure_exit=0x7f05001f;
         public static final int third_step_msg=0x7f050009;
+        public static final int warning=0x7f05001e;
     }
     public static final class xml {
         public static final int setting_tab=0x7f040000;

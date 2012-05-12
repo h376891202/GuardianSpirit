@@ -3,6 +3,7 @@ package cc.co.yadong.guardianSpirit.util;
 import android.util.Log;
 
 public class Xlog {
+	//print log
 	private static final boolean IS_LOG_ON = true;
 	private static final String DEFAULT_TAG = "GuardianSpirit";
 

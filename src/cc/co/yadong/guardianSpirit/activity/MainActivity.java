@@ -4,12 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.TabActivity;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -24,9 +29,10 @@ import cc.co.yadong.guardianSpirit.activity.tab.MessageTab;
 import cc.co.yadong.guardianSpirit.activity.tab.SettingTab;
 import cc.co.yadong.guardianSpirit.util.Xlog;
 
-public class MainActivity extends TabActivity implements OnTabChangeListener {
+public class MainActivity extends TabActivity implements OnTabChangeListener,OnClickListener {
 	private static final String MESSAGE_LIST_ACTIVITY = "message_tab";
 	private static final String SETTING_ACTIVITY = "setting_tab";
+	private static final int DLG_SURE_EXIT = 1;
 
 	private TabHost mTabHost;
 	private LayoutInflater mLayoutInflater;
@@ -52,19 +58,13 @@ public class MainActivity extends TabActivity implements OnTabChangeListener {
 				getResources().getColor(R.color.tab_label_select));
 
 	}
-
-	private void setCurrentTab() {
-		String action = mIntent.getAction();
-		Activity activity = getLocalActivityManager().getActivity(
-				mTabHost.getCurrentTabTag());
-		if (activity != null) {
-			activity.closeOptionsMenu();
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		Xlog.defualV("onKeyDown keyCode = "+keyCode);
+		if(keyCode == KeyEvent.KEYCODE_BACK){
+			showDialog(DLG_SURE_EXIT);
 		}
-		if (MESSAGE_LIST_ACTIVITY.equals(action)) {
-			mTabHost.setCurrentTabByTag(MESSAGE_LIST_ACTIVITY);
-		} else if (SETTING_ACTIVITY.equals(action))
-			mTabHost.setCurrentTabByTag(SETTING_ACTIVITY);
-
+		return super.onKeyDown(keyCode, event);
 	}
 
 	private void setupMessageTab() {
@@ -106,5 +106,23 @@ public class MainActivity extends TabActivity implements OnTabChangeListener {
 	public void onConfigurationChanged(Configuration newConfig) {
 		Xlog.defualV("on onContentChanged");
 		super.onConfigurationChanged(newConfig);
+	}
+	
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		Xlog.defualV("onCreate Dialog id = "+id);
+		if(id == DLG_SURE_EXIT){
+			return new AlertDialog.Builder(this).setTitle(R.string.warning)
+					.setMessage(R.string.sure_exit)
+					.setPositiveButton(R.string.ok, this)
+					.setNegativeButton(R.string.cancel, this).create();
+		}
+		return super.onCreateDialog(id);
+	}
+	public void onClick(DialogInterface dialog, int which) {
+		if(which == DialogInterface.BUTTON_POSITIVE)
+			this.finish();
+		else
+			dismissDialog(DLG_SURE_EXIT);
 	}
 }

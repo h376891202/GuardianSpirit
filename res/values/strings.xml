@@ -4,13 +4,6 @@
     <string name="hello">Hello World, GuardianSpiritActivity!</string>
     <string name="app_name">GuardianSpirit</string>
 
-    <string-array name="command_type">
-        <item>shutdown</item>
-        <item>reboot</item>
-        <item>sendMessage</item>
-        <item>readContacts</item>
-    </string-array>
-
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="show_password_msg">show password</string>
@@ -22,7 +15,7 @@
 
     <color name="tab_label_select">#202020</color>
     <color name="tab_label_unselect">#ffffff</color>
-
+	
     <string name="ordering_message_setting_title">ordering message setting</string>
     <string name="save_message">Save ordering message</string>
     <string name="save_message_summary">when get a ordering message, save this message.</string>
@@ -42,4 +35,9 @@
 	<string name="read_send_contacts_function_description">Read and send contacts to the default phone number.</string>
 	<string name="delete_picture_function">Delete picture</string>
 	<string name="delete_picture_function_description">allow oredering message delete all picture.</string>
+	<string name="open_service">Open Serice</string>
+	<string name="open_service_description">Open all guardian or close.</string>
+	
+	<string name="warning">Warning</string>
+	<string name="sure_exit">Do you want exit?</string>
 </resources>

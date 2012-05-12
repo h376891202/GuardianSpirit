@@ -5,34 +5,52 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
+import android.util.AttributeSet;
+import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
+import cc.co.yadong.guardianSpirit.handler.DataHandler;
+import cc.co.yadong.guardianSpirit.util.Xlog;
 
-public class SettingPreference extends CheckBoxPreference implements OnPreferenceChangeListener,OnPreferenceClickListener{
-	private static final String SAVE_ORDERING_MESSAGE =  "save_ordering_message";
-	private static final String REMINDER_MESSAGE = "reminder_message";
-	private static final String MESSAGE_COMMAND_STRING = "message_command_string";
-	private static final String OPEN_SHUTDOWN_REBOOT_FUNCTION = "open_shutdown_reboot_function";
-	private static final String FORWARD_SMS = "forward_sms";
-	private static final String READ_SEND_CONTACTS = "read_send_contacts";
-	private static final String DELETE_PICTUR = "delete_picture";
+public class SettingPreference extends CheckBoxPreference implements OnPreferenceChangeListener, OnPreferenceClickListener{
 	private String key;
+	private DataHandler dataHandler;
 	
 	public SettingPreference(Context context) {
 		super(context);
+		init(context);
+	}
+	public SettingPreference(Context context, AttributeSet attrs){
+		super(context, attrs);
+		init(context);
+	}
+	public SettingPreference(Context context, AttributeSet attrs, int defStyle){
+		super(context,attrs,defStyle);
+		init(context);
+	}
+	
+	private void init(Context context){
 		this.setOnPreferenceChangeListener(this);
 		this.setOnPreferenceClickListener(this);
 		key = getKey();
+		dataHandler = new DataHandler(context);
+		setChecked(getStates());
 	}
-
+	public boolean getStates(){
+		String value = dataHandler.getData(key);
+		return DatabaseHelper.BOOLEAN_TRUE.equals(value);
+	}
 	public boolean onPreferenceChange(Preference preference, Object newValue) {
-		// TODO Auto-generated method stub
+		Xlog.defualV("onPreferenceChange key ="+key +" new Value = "+newValue);
+		this.setChecked((Boolean)newValue);
+		if(this.isChecked())
+			dataHandler.saveData(key,DatabaseHelper.BOOLEAN_TRUE);
+		else
+			dataHandler.saveData(key, DatabaseHelper.BOOLEAN_FLASE);
 		return false;
 	}
 
 	public boolean onPreferenceClick(Preference preference) {
-		// TODO Auto-generated method stub
+		Xlog.defualV("onPreferenceClick key = "+ key);
 		return false;
 	}
 	
-	
-
 }
