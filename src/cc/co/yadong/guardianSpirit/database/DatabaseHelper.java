@@ -72,7 +72,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			loadDataString(statement, Data.COMMAND_STRING,DefaultDataValue.DEF_COMMAND_STRING);
 			loadDataString(statement, Data.PASSWORD_ERROR_COUNT,DefaultDataValue.DEF_PASSWORD_ERROR_COUNT+"");
 			loadDataBoolean(statement,Data.OPEN_SERVICE,DefaultDataValue.DEF_OPEN_SERVERICE);
-			loadDataBoolean(statement,Data.SAVE_MESSAGE,DefaultDataValue.DEF_SAVE_MESSAGE);
 			loadDataBoolean(statement,Data.NOTIFY_WHEN_HAVA_MESSAGE,DefaultDataValue.DEF_NOTIFY_WHEN_HAVA_MESSAGE);
 			loadDataBoolean(statement,Data.MESSAGE_COMMAND_STRING,DefaultDataValue.DEF_MESSAGE_COMMAND_STRING);
 			loadDataBoolean(statement,Data.OPEN_SHUTDOWN_REBOOT_FUNCTION,DefaultDataValue.DEF_OPEN_SHUTDOWN_REBOOT_FUNCTION);

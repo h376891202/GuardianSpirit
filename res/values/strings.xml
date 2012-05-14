@@ -17,8 +17,6 @@
     <color name="tab_label_unselect">#ffffff</color>
 	
     <string name="ordering_message_setting_title">ordering message setting</string>
-    <string name="save_message">Save ordering message</string>
-    <string name="save_message_summary">when get a ordering message, save this message.</string>
     <string name="ordering_message_reminder">Ordering message reminder</string>
     <string name="ordering_message_reminder_summary">warning received an ordering message.</string>
     <string name="ordering_message_command_string">Ordering message command</string>
@@ -40,4 +38,6 @@
 	
 	<string name="warning">Warning</string>
 	<string name="sure_exit">Do you want exit?</string>
+	
+	<string name="new_notification_message">you have an new message.</string>
 </resources>

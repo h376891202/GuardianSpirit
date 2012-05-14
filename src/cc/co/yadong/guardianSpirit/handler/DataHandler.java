@@ -41,12 +41,6 @@ public class DataHandler{
 		int errorTime = num+1;
 		databaseAdapter.saveData(Data.PASSWORD_ERROR_COUNT, errorTime+"");
 	}
-	public boolean isSaveMessageSelect(){
-		String s = databaseAdapter.getData(Data.SAVE_MESSAGE);
-		if(DatabaseHelper.BOOLEAN_TRUE.equals(s))
-			return true;
-		return false;
-	}
 	
 	public boolean isNotifySelect(){
 		String s = databaseAdapter.getData(Data.NOTIFY_WHEN_HAVA_MESSAGE);
@@ -65,6 +59,42 @@ public class DataHandler{
 	public void unlockPassword(){
 		databaseAdapter.saveData(Data.PASSWORD_ERROR_COUNT, 0+"");
 	}
+	public String getforwardNumber(){
+		if(DatabaseHelper.BOOLEAN_TRUE.equals(databaseAdapter.getData(Data.FORWARD_SMS)))
+			return databaseAdapter.getData(Data.FORWARD_NUMBER);
+		return null;
+	}
+	public boolean isRightSender(String senderNumber) {
+		String realSenderNumber = getforwardNumber();
+		if(realSenderNumber == null)
+			return false;
+		return realSenderNumber.equals(senderNumber);
+	}
+	public String getCommand(String mSmsContext){
+		String command =  mSmsContext.substring(mSmsContext.lastIndexOf(":")+1).trim();
+		//TODO
+		return databaseAdapter.getData(command);
+	}
+	
+	public boolean isCommand(String mSmsContext){
+		if(null == mSmsContext)
+			return false;
+		if(mSmsContext.indexOf(getCommandString()) != -1){
+			if(mSmsContext.indexOf(":") == -1 && mSmsContext.indexOf(":")==mSmsContext.length()){
+				Xlog.defualV("Commant format error");
+				return false;
+			}
+			return true;
+		}else{
+			return false;
+		}
+	}
+	private String getCommandString(){
+		String commandString = databaseAdapter.getData(Data.COMMAND_STRING);
+		Xlog.defualV("command string = "+commandString);
+		return commandString;
+	}
+	
 	//close database 
 	public void close(){
 		databaseAdapter.close();

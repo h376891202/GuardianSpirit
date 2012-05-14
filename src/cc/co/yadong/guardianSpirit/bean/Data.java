@@ -11,7 +11,6 @@ public class Data {
 	
 	//setting save
 	public static final String OPEN_SERVICE = "open_service";
-	public static final String SAVE_MESSAGE =  "save_ordering_message";
 	public static final String NOTIFY_WHEN_HAVA_MESSAGE ="reminder_message";
 	public static final String MESSAGE_COMMAND_STRING = "message_command_string";
 	public static final String OPEN_SHUTDOWN_REBOOT_FUNCTION = "open_shutdown_reboot_function";

@@ -4,13 +4,6 @@
     <string name="hello">Hello World, GuardianSpiritActivity!</string>
     <string name="app_name">GuardianSpirit</string>
 
-    <string-array name="command_type">
-        <item>shutdown</item>
-        <item>reboot</item>
-        <item>sendMessage</item>
-        <item>readContacts</item>
-    </string-array>
-
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
     <string name="show_password_msg">显示密码</string>
@@ -19,14 +12,34 @@
     <string name="inputpasswordmessage">第一步,你需要为这个应用程序设置一个密码.</string>
     <string name="second_step_msg">第二部,你需要设置一个默认手机号,当你需要的时候能够通过这个手机号简单的操作该手机.</string>
     <string name="third_step_msg">第三部,你需要填入你的名字,以便于手机记住你.</string>
+    
 	<color name="tab_label_select">#202020</color>
 	<color name="tab_label_unselect">#ffffff</color>
+	
 	<string name="ordering_message_setting_title">短信命令设置</string>
-	<string name="save_message">保存短信命令</string>
-	<string name="save_message_summary">将短信命令保存以供查阅.</string>
 	<string name="ordering_message_reminder">短信命令提示</string>
 	<string name="ordering_message_reminder_summary">当收到一个短信命令的时候提示我.</string>
 	<string name="ordering_message_command_string">命令短信提示符</string>
 	<string name="ordering_setting_title">短信命令详细设置</string>
+	
+	
+    <string name="input_password_text">请输入进入该程序的密码!</string>
+    <string name="empty_list">没有命令短信</string>
+    <string name="shutdown_reboot_function">关机或重启.</string>
+    <string name="shutdown_reboot_function_description">允许通过命令短信关机或重启.</string>
+	<string name="forward_sms_function">转发短息.</string>
+	<string name="forward_sms_function_description">允许设置短信转发到预设手机.</string>
+	<string name="read_send_contacts_function">读取并发送联系人.</string>
+	<string name="read_send_contacts_function_description">允许通过命令短信设置读取发送联系人.</string>
+	<string name="delete_picture_function">删除图片.</string>
+	<string name="delete_picture_function_description">允许通过命令短信删除所有图片.</string>
+	<string name="open_service">打开防盗功能.</string>
+	<string name="open_service_description">打开或关闭防盗功能.</string>
+	
+	<string name="warning">警告</string>
+	<string name="sure_exit">你想要退出吗?</string>
+	
+	<string name="new_notification_message">您有新的提示!</string>
+	
 
 </resources>

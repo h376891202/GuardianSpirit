@@ -1,5 +1,8 @@
 package cc.co.yadong.guardianSpirit.activity.tab;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
@@ -13,6 +16,7 @@ import cc.co.yadong.guardianSpirit.util.Xlog;
 public class SettingPreference extends CheckBoxPreference implements OnPreferenceChangeListener, OnPreferenceClickListener{
 	private String key;
 	private DataHandler dataHandler;
+	private static List<SettingPreference> settingPreferences = new ArrayList<SettingPreference>();
 	
 	public SettingPreference(Context context) {
 		super(context);
@@ -33,6 +37,7 @@ public class SettingPreference extends CheckBoxPreference implements OnPreferenc
 		key = getKey();
 		dataHandler = new DataHandler(context);
 		setChecked(getStates());
+		settingPreferences.add(this);
 	}
 	public boolean getStates(){
 		String value = dataHandler.getData(key);
@@ -51,6 +56,16 @@ public class SettingPreference extends CheckBoxPreference implements OnPreferenc
 	public boolean onPreferenceClick(Preference preference) {
 		Xlog.defualV("onPreferenceClick key = "+ key);
 		return false;
+	}
+	
+	private void closeSelf(){
+		dataHandler.close();
+	}
+	
+	public static void close(){
+		for(SettingPreference preference : settingPreferences){
+			preference.closeSelf();
+		}
 	}
 	
 }

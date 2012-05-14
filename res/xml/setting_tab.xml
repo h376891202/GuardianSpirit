@@ -3,7 +3,6 @@
     android:key="parent"  >
 	
      <cc.co.yadong.guardianSpirit.activity.tab.SettingPreference
-            android:disableDependentsState="true"
             android:key="open_service"
             android:persistent="false"
             android:summary="@string/open_service_description"
@@ -13,13 +12,6 @@
         android:key="ordering_message_setting"
         android:title="@string/ordering_message_setting_title" >
         <cc.co.yadong.guardianSpirit.activity.tab.SettingPreference
-            android:disableDependentsState="true"
-            android:key="save_ordering_message"
-            android:persistent="false"
-            android:summary="@string/save_message_summary"
-            android:title="@string/save_message" />
-        <cc.co.yadong.guardianSpirit.activity.tab.SettingPreference
-            android:disableDependentsState="true"
             android:key="reminder_message"
             android:persistent="false"
             android:summary="@string/ordering_message_reminder_summary"
@@ -34,25 +26,21 @@
         android:key="ordering_setting"
         android:title="@string/ordering_setting_title" >
         <cc.co.yadong.guardianSpirit.activity.tab.SettingPreference 
-            android:disableDependentsState="true"
             android:key="open_shutdown_reboot_function"
             android:persistent="false"
             android:summary="@string/shutdown_reboot_function_description"
             android:title="@string/shutdown_reboot_function"/>
         <cc.co.yadong.guardianSpirit.activity.tab.SettingPreference 
-            android:disableDependentsState="true"
             android:key="forward_sms"
             android:persistent="false"
             android:summary="@string/forward_sms_function_description"
             android:title="@string/forward_sms_function"/>
         <cc.co.yadong.guardianSpirit.activity.tab.SettingPreference
-            android:disableDependentsState="true" 
             android:key="read_send_contacts"
             android:persistent="false"
             android:summary="@string/read_send_contacts_function_description"
             android:title="@string/read_send_contacts_function"/>
 		<cc.co.yadong.guardianSpirit.activity.tab.SettingPreference
-		    android:disableDependentsState="true" 
 		    android:key="delete_picture"
 		    android:persistent="false"
 		    android:summary="@string/delete_picture_function_description"

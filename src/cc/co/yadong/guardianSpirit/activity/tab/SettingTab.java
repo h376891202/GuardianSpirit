@@ -28,7 +28,6 @@ public class SettingTab extends PreferenceActivity implements OnClickListener{
 		saveMessage = (SettingPreference) findPreference("save_ordering_message");
 		remindeMessage = (SettingPreference) findPreference("reminder_message");
 		commandSettingPreference = (CommandSettingPreference) findPreference("message_command_string");
-		initValue();
 	}
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -38,27 +37,17 @@ public class SettingTab extends PreferenceActivity implements OnClickListener{
 		}
 		return super.onKeyDown(keyCode, event);
 	}
-	private void initValue() {
-		boolean isSaveMessage = dataHandler.isSaveMessageSelect();
-		if (saveMessage != null)
-			saveMessage.setPersistent(isSaveMessage);
-		boolean isRemindeMessage = dataHandler.isNotifySelect();
-		if (remindeMessage != null)
-			remindeMessage.setPersistent(isRemindeMessage);
-	}
 	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		//close command setting preferece database
 		commandSettingPreference.close();
+		//close all setting preference's database
+		SettingPreference.close();
 		dataHandler.close();
 	}
 	
-	@Override
-	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
-			Preference preference) {
-		return super.onPreferenceTreeClick(preferenceScreen, preference);
-	}
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		Xlog.defualV("onCreate Dialog id = "+id);

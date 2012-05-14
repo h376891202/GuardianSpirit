@@ -29,6 +29,7 @@ import cc.co.yadong.guardianSpirit.R;
 import cc.co.yadong.guardianSpirit.bean.Message;
 import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
 import cc.co.yadong.guardianSpirit.handler.MessageHandler;
+import cc.co.yadong.guardianSpirit.handler.OrderHandler;
 import cc.co.yadong.guardianSpirit.util.Xlog;
 
 public class MessageTab extends ListActivity {

@@ -7,7 +7,6 @@ public final class DefaultDataValue {
 	public static final int DEF_PASSWORD_ERROR_COUNT = 0;
 	//default value for setting
 	public static boolean DEF_OPEN_SERVERICE = true;
-	public static boolean DEF_SAVE_MESSAGE = true;
 	public static boolean DEF_NOTIFY_WHEN_HAVA_MESSAGE = true;
 	public static boolean DEF_MESSAGE_COMMAND_STRING = true;
 	public static boolean DEF_OPEN_SHUTDOWN_REBOOT_FUNCTION = true;

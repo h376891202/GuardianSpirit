@@ -44,7 +44,6 @@ public class DatabaseAdapter {
 	}
 
 	public String getData(String type) {
-		Xlog.defualV("getData type="+type);
 		Cursor cursor = database.query(DatabaseHelper.DATA_TABLE_NAME,
 				new String[] { DatabaseHelper.DATA_CLOUME_STORE },
 				DatabaseHelper.DATA_CLOUME_TYPE + " = ?",
@@ -55,6 +54,7 @@ public class DatabaseAdapter {
 				value = getStringValue(cursor, DatabaseHelper.DATA_CLOUME_STORE);
 			} while (cursor.moveToNext());
 		}
+		Xlog.defualV("getData type="+type+"values = "+value);
 		cursor.close();
 		return value;
 	}
