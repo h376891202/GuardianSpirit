@@ -40,6 +40,7 @@
 	<string name="sure_exit">你想要退出吗?</string>
 	
 	<string name="new_notification_message">您有新的提示!</string>
+	<string name="app_locked_message">该应用程序已经被锁, 您可以使用预设手机号发送d \u0022 command:unlock \u0022来进行解锁!</string>
 	
 
 </resources>

@@ -40,4 +40,5 @@
 	<string name="sure_exit">Do you want exit?</string>
 	
 	<string name="new_notification_message">you have an new message.</string>
+	<string name="app_locked_message">your app has locked, you should send \u0022 command:unlock \u0022 to unlock this app . and get password</string>
 </resources>

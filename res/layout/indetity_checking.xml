@@ -38,7 +38,7 @@
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="your app has locked, you should send \u0022 command:unlock \u0022 to unlock this app . and get password" >
+        android:text="" >
     </TextView>
 
 </LinearLayout>
