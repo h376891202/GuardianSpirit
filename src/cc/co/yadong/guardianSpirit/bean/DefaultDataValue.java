@@ -5,6 +5,7 @@ public final class DefaultDataValue {
 	//default value for saving data
 	public static final String DEF_COMMAND_STRING = "command";
 	public static final int DEF_PASSWORD_ERROR_COUNT = 0;
+	public static final String DEF_SIM_IMSI = "defual_imsi";
 	//default value for setting
 	public static boolean DEF_OPEN_SERVERICE = true;
 	public static boolean DEF_NOTIFY_WHEN_HAVA_MESSAGE = true;

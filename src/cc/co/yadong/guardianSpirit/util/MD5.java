@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class MD5 {
+	 public static  String MD5_STR = null;
 	 public static String getMD5Str(String str) {  
 	        MessageDigest messageDigest = null;  
 	  

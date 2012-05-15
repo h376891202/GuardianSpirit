@@ -42,5 +42,5 @@
 	<string name="new_notification_message">您有新的提示!</string>
 	<string name="app_locked_message">该应用程序已经被锁, 您可以使用预设手机号发送d \u0022 command:unlock \u0022来进行解锁!</string>
 	
-
+	<string name="new_sim_insert_send_message_title">您好! 你朋友%s的电话插入新卡, 通过\u0022 command:getDetail \u0022 得到更多信息!</string>
 </resources>

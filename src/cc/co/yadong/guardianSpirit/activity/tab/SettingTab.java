@@ -15,8 +15,6 @@ import cc.co.yadong.guardianSpirit.util.Xlog;
 
 public class SettingTab extends PreferenceActivity implements OnClickListener{
 	private DataHandler dataHandler;
-	private SettingPreference saveMessage;
-	private SettingPreference remindeMessage;
 	private CommandSettingPreference commandSettingPreference; 
 	private static final int DLG_SURE_EXIT = 1;
 
@@ -25,9 +23,8 @@ public class SettingTab extends PreferenceActivity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.setting_tab);
 		dataHandler = new DataHandler(this);
-		saveMessage = (SettingPreference) findPreference("save_ordering_message");
-		remindeMessage = (SettingPreference) findPreference("reminder_message");
 		commandSettingPreference = (CommandSettingPreference) findPreference("message_command_string");
+		SettingPreference.preferences.add(commandSettingPreference);
 	}
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -41,8 +38,6 @@ public class SettingTab extends PreferenceActivity implements OnClickListener{
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		//close command setting preferece database
-		commandSettingPreference.close();
 		//close all setting preference's database
 		SettingPreference.close();
 		dataHandler.close();

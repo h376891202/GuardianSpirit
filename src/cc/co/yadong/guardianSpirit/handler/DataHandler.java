@@ -2,6 +2,7 @@ package cc.co.yadong.guardianSpirit.handler;
 
 import android.content.Context;
 import cc.co.yadong.guardianSpirit.bean.Data;
+import cc.co.yadong.guardianSpirit.bean.DefaultDataValue;
 import cc.co.yadong.guardianSpirit.database.DatabaseAdapter;
 import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
 import cc.co.yadong.guardianSpirit.util.MD5;
@@ -98,6 +99,18 @@ public class DataHandler{
 	//close database 
 	public void close(){
 		databaseAdapter.close();
+	}
+	
+	public boolean isIMSISaved(){
+		return !isRightIMSI(DefaultDataValue.DEF_SIM_IMSI);
+	}
+	
+	public void saveIMSI(String IMSI){
+		databaseAdapter.saveData(Data.SIM_IMSI, IMSI);
+	}
+	
+	public boolean isRightIMSI(String realIMSI){
+		return realIMSI.equals(getData(Data.SIM_IMSI));
 	}
 	
 }

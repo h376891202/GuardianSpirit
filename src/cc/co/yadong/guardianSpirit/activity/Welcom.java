@@ -6,6 +6,7 @@ package cc.co.yadong.guardianSpirit.activity;
 import cc.co.yadong.guardianSpirit.R;
 import cc.co.yadong.guardianSpirit.handler.DataHandler;
 import android.app.Activity;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -32,6 +33,10 @@ public class Welcom extends Activity implements OnClickListener{
 	private CheckBox mShowPassword;
 	 
 	protected void onCreate(Bundle savedInstanceState) {
+		// init notificationManager
+		NotificationManager notificationManager = (NotificationManager) this
+				.getSystemService(Activity.NOTIFICATION_SERVICE);
+		notificationManager.cancel(R.drawable.ic_launcher);
 		dataHandler = new DataHandler(this);
 		if(dataHandler.isPasswordSaved()){
 			Intent intent = new Intent();

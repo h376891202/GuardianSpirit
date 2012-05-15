@@ -65,6 +65,7 @@ public final class R {
     }
     public static final class string {
         public static final int addpassword=0x7f050005;
+        public static final int app_locked_message=0x7f05001f;
         public static final int app_name=0x7f050001;
         public static final int cancel=0x7f050003;
         public static final int command_string_summary=0x7f05000e;
@@ -77,6 +78,7 @@ public final class R {
         public static final int input_password_text=0x7f050010;
         public static final int inputpasswordmessage=0x7f050007;
         public static final int new_notification_message=0x7f05001e;
+        public static final int new_sim_insert_send_message_title=0x7f050020;
         public static final int ok=0x7f050002;
         public static final int open_service=0x7f05001a;
         public static final int open_service_description=0x7f05001b;

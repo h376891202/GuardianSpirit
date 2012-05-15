@@ -8,6 +8,7 @@ public class Data {
 	public static final String SAVE_PASSWORD = "password";
 	public static final String FORWARD_NUMBER = "forward_number";
 	public static final String OWNER_NAME = "user_name";
+	public static final String SIM_IMSI = "imsi";
 	
 	//setting save
 	public static final String OPEN_SERVICE = "open_service";

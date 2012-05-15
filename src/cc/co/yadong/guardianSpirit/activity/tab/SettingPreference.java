@@ -9,14 +9,15 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.util.AttributeSet;
+import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
 import cc.co.yadong.guardianSpirit.handler.DataHandler;
 import cc.co.yadong.guardianSpirit.util.Xlog;
 
-public class SettingPreference extends CheckBoxPreference implements OnPreferenceChangeListener, OnPreferenceClickListener{
+public class SettingPreference extends CheckBoxPreference implements OnPreferenceChangeListener, OnPreferenceClickListener,CloseDatabaseInterface{
 	private String key;
 	private DataHandler dataHandler;
-	private static List<SettingPreference> settingPreferences = new ArrayList<SettingPreference>();
+	public static List<Preference> preferences = new ArrayList<Preference>();
 	
 	public SettingPreference(Context context) {
 		super(context);
@@ -37,7 +38,7 @@ public class SettingPreference extends CheckBoxPreference implements OnPreferenc
 		key = getKey();
 		dataHandler = new DataHandler(context);
 		setChecked(getStates());
-		settingPreferences.add(this);
+		preferences.add(this);
 	}
 	public boolean getStates(){
 		String value = dataHandler.getData(key);
@@ -50,21 +51,32 @@ public class SettingPreference extends CheckBoxPreference implements OnPreferenc
 			dataHandler.saveData(key,DatabaseHelper.BOOLEAN_TRUE);
 		else
 			dataHandler.saveData(key, DatabaseHelper.BOOLEAN_FLASE);
+		if(Data.OPEN_SERVICE.equals(key)){
+				for(Preference settingPreference : preferences){
+					if(!Data.OPEN_SERVICE.equals(settingPreference.getKey())){
+						if((Boolean)newValue)
+							settingPreference.setEnabled(true);
+						else
+							settingPreference.setEnabled(false);
+				}
+					
+			}
+		}
 		return false;
 	}
 
 	public boolean onPreferenceClick(Preference preference) {
 		Xlog.defualV("onPreferenceClick key = "+ key);
-		return false;
+		return true;
 	}
 	
-	private void closeSelf(){
+	public void closeSelf(){
 		dataHandler.close();
 	}
 	
 	public static void close(){
-		for(SettingPreference preference : settingPreferences){
-			preference.closeSelf();
+		for(Preference preference : preferences){
+			((CloseDatabaseInterface)preference).closeSelf();
 		}
 	}
 	

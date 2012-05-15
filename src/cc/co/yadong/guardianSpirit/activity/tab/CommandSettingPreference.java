@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class CommandSettingPreference extends EditTextPreference implements
-		TextWatcher {
+		TextWatcher,CloseDatabaseInterface {
 	private final static String DEFAULT_COMMAND_STRING = "command";
 	private String summary;
 	private DataHandler dataHandler;
@@ -71,7 +71,7 @@ public class CommandSettingPreference extends EditTextPreference implements
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
 	}
 	
-	public void close(){
+	public void closeSelf(){
 		if(null != dataHandler)
 			dataHandler.close();
 	}
