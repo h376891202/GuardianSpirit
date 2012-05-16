@@ -46,5 +46,13 @@
 		    android:summary="@string/delete_picture_function_description"
 		    android:title="@string/delete_picture_function"/>
     </PreferenceCategory>
-
+	<PreferenceCategory
+	    android:title="@string/application_setting_detail">
+	    <Preference android:key="alter_password"
+	        android:summary="@string/alter_password_description"
+	        android:title="@string/alter_password"/>
+	    <Preference android:key="alter_default_phone_numer"
+	        android:summary="@string/alter_preset_numbser_description"
+	        android:title="@string/alter_preset_numbser"/>
+	</PreferenceCategory>
 </PreferenceScreen>

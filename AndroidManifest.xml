@@ -25,6 +25,7 @@
         <activity android:name=".activity.SecondSetpActivity"></activity>
 		<activity android:name=".activity.MainActivity" android:configChanges="orientation|keyboardHidden">
 		</activity>
+		<activity android:name=".activity.AlterPsswordOrNumber"></activity>
 		<activity android:name=".activity.tab.MessageTab"></activity>
         <activity android:name=".activity.tab.SettingTab"></activity>
         <activity android:name=".activity.IdentityCheckingActivity"></activity>

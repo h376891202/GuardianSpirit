@@ -43,4 +43,13 @@
 	<string name="app_locked_message">your app has locked, you should send \u0022 command:unlock \u0022 to unlock this app . and get password</string>
 	
 	<string name="new_sim_insert_send_message_title">hi your friend %s phone have changed sim. send command:detail to get more information</string>
+	<string name="application_setting_detail">application setting detail</string>
+	<string name="alter_password">alter password</string>
+	<string name="alter_password_description">click to alter password</string>
+	<string name="alter_preset_numbser">alter preset number.</string>
+	<string name="alter_preset_numbser_description">click to alter preset phone number.</string>
+	<string name="input_password">frist input the password</string>
+	<string name="sure_new_password_prompt">sure your new password.</string>
+	<string name="input_new_password_prompt">pls input a new password.</string>
+	<string name="input_new_number_prompt">pls input a new phoneNumber.</string>
 </resources>

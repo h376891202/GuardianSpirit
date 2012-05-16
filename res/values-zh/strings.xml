@@ -43,4 +43,9 @@
 	<string name="app_locked_message">该应用程序已经被锁, 您可以使用预设手机号发送d \u0022 command:unlock \u0022来进行解锁!</string>
 	
 	<string name="new_sim_insert_send_message_title">您好! 你朋友%s的电话插入新卡, 通过\u0022 command:getDetail \u0022 得到更多信息!</string>
+	<string name="application_setting_detail">应用程序详细设置</string>
+	<string name="alter_password">修改密码</string>
+	<string name="alter_password_description">点击修改密码</string>
+	<string name="alter_preset_numbser">修改预设手机号</string>
+	<string name="alter_preset_numbser_description">点击修改预设手机号.</string>
 </resources>

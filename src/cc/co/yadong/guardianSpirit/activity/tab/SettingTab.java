@@ -4,19 +4,24 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.view.KeyEvent;
 import cc.co.yadong.guardianSpirit.R;
+import cc.co.yadong.guardianSpirit.activity.AlterPsswordOrNumber;
 import cc.co.yadong.guardianSpirit.handler.DataHandler;
 import cc.co.yadong.guardianSpirit.util.Xlog;
 
-public class SettingTab extends PreferenceActivity implements OnClickListener{
+public class SettingTab extends PreferenceActivity implements OnClickListener,OnPreferenceClickListener{
 	private DataHandler dataHandler;
 	private CommandSettingPreference commandSettingPreference; 
 	private static final int DLG_SURE_EXIT = 1;
+	private Preference alterPasswordPreference;
+	private Preference alterPresetNumberPreference;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,10 @@ public class SettingTab extends PreferenceActivity implements OnClickListener{
 		addPreferencesFromResource(R.xml.setting_tab);
 		dataHandler = new DataHandler(this);
 		commandSettingPreference = (CommandSettingPreference) findPreference("message_command_string");
+		alterPasswordPreference = findPreference("alter_password");
+		alterPresetNumberPreference = findPreference("alter_default_phone_numer");
+		alterPasswordPreference.setOnPreferenceClickListener(this);
+		alterPresetNumberPreference.setOnPreferenceClickListener(this);
 		SettingPreference.preferences.add(commandSettingPreference);
 	}
 	@Override
@@ -59,5 +68,14 @@ public class SettingTab extends PreferenceActivity implements OnClickListener{
 			System.exit(0);
 		else
 			dismissDialog(DLG_SURE_EXIT);
+	}
+	public boolean onPreferenceClick(Preference preference) {
+		Intent intent = new Intent(SettingTab.this,AlterPsswordOrNumber.class);
+		if(preference.equals(alterPasswordPreference))
+			intent.putExtra(AlterPsswordOrNumber.ALTER_TYPE, AlterPsswordOrNumber.ALTER_PASSWORD);
+		else
+			intent.putExtra(AlterPsswordOrNumber.ALTER_TYPE, AlterPsswordOrNumber.ALTER_PRESET_NUMBER);
+		startActivity(intent);
+		return false;
 	}
 }
