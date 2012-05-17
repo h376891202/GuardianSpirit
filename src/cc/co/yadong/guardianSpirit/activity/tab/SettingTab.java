@@ -9,13 +9,13 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
-import android.preference.PreferenceScreen;
 import android.view.KeyEvent;
 import cc.co.yadong.guardianSpirit.R;
 import cc.co.yadong.guardianSpirit.activity.AlterPsswordOrNumber;
 import cc.co.yadong.guardianSpirit.handler.DataHandler;
 import cc.co.yadong.guardianSpirit.util.Xlog;
 
+@SuppressWarnings("deprecation")
 public class SettingTab extends PreferenceActivity implements OnClickListener,OnPreferenceClickListener{
 	private DataHandler dataHandler;
 	private CommandSettingPreference commandSettingPreference; 

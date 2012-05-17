@@ -3,12 +3,8 @@ package cc.co.yadong.guardianSpirit.activity;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.TabActivity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -29,6 +25,7 @@ import cc.co.yadong.guardianSpirit.activity.tab.MessageTab;
 import cc.co.yadong.guardianSpirit.activity.tab.SettingTab;
 import cc.co.yadong.guardianSpirit.util.Xlog;
 
+@SuppressWarnings("deprecation")
 public class MainActivity extends TabActivity implements OnTabChangeListener,OnClickListener {
 	private static final String MESSAGE_LIST_ACTIVITY = "message_tab";
 	private static final String SETTING_ACTIVITY = "setting_tab";
@@ -36,7 +33,6 @@ public class MainActivity extends TabActivity implements OnTabChangeListener,OnC
 
 	private TabHost mTabHost;
 	private LayoutInflater mLayoutInflater;
-	private Intent mIntent;
 	private Map<String, TextView> views;
 
 	@Override
@@ -45,7 +41,7 @@ public class MainActivity extends TabActivity implements OnTabChangeListener,OnC
 		super.onCreate(savedInstanceState);
 		Xlog.defualV("-----------------------oncreate()");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		mIntent = getIntent();
+		getIntent();
 		mTabHost = getTabHost();
 		views = new HashMap<String, TextView>();
 		TabWidget tabWidget = mTabHost.getTabWidget();
@@ -92,6 +88,7 @@ public class MainActivity extends TabActivity implements OnTabChangeListener,OnC
 		mTabHost.addTab(mTabHost.newTabSpec(SETTING_ACTIVITY)
 				.setIndicator(view).setContent(intent));
 	}
+	
 
 	public void onTabChanged(String tabId) {
 		for (TextView textView : views.values())

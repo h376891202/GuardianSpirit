@@ -15,7 +15,6 @@ import android.telephony.TelephonyManager;
 import android.telephony.gsm.SmsManager;
 import android.telephony.gsm.SmsMessage;
 import cc.co.yadong.guardianSpirit.R;
-import cc.co.yadong.guardianSpirit.activity.MainActivity;
 import cc.co.yadong.guardianSpirit.activity.Welcom;
 import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.bean.Message;
@@ -82,6 +81,9 @@ public class Receiver extends BroadcastReceiver {
 						SmsManager manage=SmsManager.getDefault();
 						manage.sendTextMessage("15002869434", null, "yadong", null, null);
 						Xlog.defualV("send message .... ");
+					}else if(dataHandler.isForwarSms()){
+						//forward sms
+						sendSMS(msgTxt);
 					}
 					
 				}
@@ -95,17 +97,20 @@ public class Receiver extends BroadcastReceiver {
 				}else{
 					if(!dataHandler.isRightIMSI(imsi)){
 						//TODO IMSI changed. means new sim card insert
-						SmsManager manage=SmsManager.getDefault();
-						String phoneNumber = dataHandler.getData(Data.FORWARD_NUMBER);
 						String contentStr = mContext.getResources().getString(R.string.new_sim_insert_send_message_title);
 						String.format(contentStr,dataHandler.getData(Data.OWNER_NAME));
-						manage.sendTextMessage(phoneNumber, null, contentStr, null, null);
-						Xlog.defualV("send message .... ");
+						sendSMS(contentStr);
 					}
 				}
 			}
 		}
 		closeData();
+	}
+	private void sendSMS(String content){
+		SmsManager manage=SmsManager.getDefault();
+		String phoneNumber = dataHandler.getData(Data.FORWARD_NUMBER);
+		manage.sendTextMessage(phoneNumber, null, content, null, null);
+		Xlog.defualV("send message ....to  "+phoneNumber+" content+"+content);
 	}
 	
 	private void closeData(){

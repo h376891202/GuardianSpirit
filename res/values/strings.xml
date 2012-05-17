@@ -52,4 +52,9 @@
 	<string name="sure_new_password_prompt">sure your new password.</string>
 	<string name="input_new_password_prompt">pls input a new password.</string>
 	<string name="input_new_number_prompt">pls input a new phoneNumber.</string>
+	
+	<string name="password_error">password error,please try it again.</string>
+	<string name="password_is_not_the_same">two password is not the same, please check it.</string>
+	<string name="alter_password_success">alter password success.</string>
+	<string name="alter_preset_number_success">alter preset number success.</string>
 </resources>

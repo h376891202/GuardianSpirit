@@ -13,7 +13,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,11 +28,9 @@ import cc.co.yadong.guardianSpirit.R;
 import cc.co.yadong.guardianSpirit.bean.Message;
 import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
 import cc.co.yadong.guardianSpirit.handler.MessageHandler;
-import cc.co.yadong.guardianSpirit.handler.OrderHandler;
 import cc.co.yadong.guardianSpirit.util.Xlog;
 
 public class MessageTab extends ListActivity {
-	private ListView listView;
 	private LayoutInflater factory;
 	private MessageHandler messageHandler;
 	private int clickitem = -1;
@@ -47,7 +44,6 @@ public class MessageTab extends ListActivity {
 		setContentView(R.layout.odering_message_list);
 		mEmptyView = (TextView) findViewById(R.id.emptyView);
 		mEmptyView.setVisibility(View.GONE);
-		listView = getListView();
 		factory = LayoutInflater.from(this);
 		messageHandler = new MessageHandler(this);
 		super.onCreate(savedInstanceState);
@@ -66,7 +62,6 @@ public class MessageTab extends ListActivity {
 						R.id.message_content, R.id.message_phone,
 						R.id.message_time });
 		setListAdapter(mAdapter);
-		System.out.println("yadong" + listView);
 		mIsInit = true;
 
 	}

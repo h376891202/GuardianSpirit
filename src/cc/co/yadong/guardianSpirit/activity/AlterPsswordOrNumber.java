@@ -67,7 +67,7 @@ public class AlterPsswordOrNumber extends Activity implements OnClickListener{
 			sureNewPassword.setVisibility(View.VISIBLE);
 			surePasswordTextView.setVisibility(View.VISIBLE);
 		}else{
-			newVlue.setInputType(InputType.TYPE_NUMBER_VARIATION_NORMAL);
+			newVlue.setInputType(InputType.TYPE_CLASS_PHONE);
 			alterTypePrompt.setText(getResources().getString(R.string.input_new_number_prompt));
 			sureNewPassword.setVisibility(View.GONE);
 			surePasswordTextView.setVisibility(View.GONE);
@@ -79,16 +79,21 @@ public class AlterPsswordOrNumber extends Activity implements OnClickListener{
 			String passwordStr = password.getText().toString();
 			String newValue = newVlue.getText().toString();
 			if(!dataHandler.checkPassword(passwordStr))
-				Toast.makeText(this, "password is wrong pls try it agin", Toast.LENGTH_SHORT).show();
+				createToast(R.string.password_error, Toast.LENGTH_SHORT);
 			else{
 				if(mAlterType == ALTER_PASSWORD){
 					String sureValue = sureNewPassword.getText().toString();
 					if(newValue== null || !newValue.equals(sureValue))
-						Toast.makeText(this, "pls input right password and be sure your password is right", Toast.LENGTH_SHORT).show();
-					else
+						createToast(R.string.password_is_not_the_same,Toast.LENGTH_SHORT);
+					else{
+						this.finish();
+						createToast(R.string.alter_password_success, Toast.LENGTH_SHORT);
 						dataHandler.setPassword(newValue);
+					}
 				}else{
 					if(newValue != null){
+						this.finish();
+						createToast(R.string.alter_preset_number_success, Toast.LENGTH_SHORT);
 						dataHandler.saveData(Data.FORWARD_NUMBER, newValue);
 					}
 				}
@@ -97,6 +102,9 @@ public class AlterPsswordOrNumber extends Activity implements OnClickListener{
 		}else if(v.equals(cancelButton)){
 			this.finish();
 		}
-		
+	}
+	
+	private void createToast(int resId,int showtime){
+		Toast.makeText(this, resId, showtime).show();
 	}
 }

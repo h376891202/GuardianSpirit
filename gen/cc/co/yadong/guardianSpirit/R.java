@@ -20,11 +20,12 @@ public final class R {
         public static final int contacts_tab_bg_select=0x7f020002;
         public static final int ic_launcher=0x7f020003;
         public static final int list_empty_image=0x7f020004;
-        public static final int tab_background=0x7f020005;
-        public static final int tab_bg=0x7f020006;
-        public static final int tab_message=0x7f020007;
-        public static final int tab_setting=0x7f020008;
-        public static final int transparent=0x7f020009;
+        public static final int send_order_tab=0x7f020005;
+        public static final int tab_background=0x7f020006;
+        public static final int tab_bg=0x7f020007;
+        public static final int tab_message=0x7f020008;
+        public static final int tab_setting=0x7f020009;
+        public static final int transparent=0x7f02000a;
     }
     public static final class id {
         public static final int alert_title=0x7f07000e;
@@ -74,6 +75,8 @@ public final class R {
         public static final int addpassword=0x7f050005;
         public static final int alter_password=0x7f050022;
         public static final int alter_password_description=0x7f050023;
+        public static final int alter_password_success=0x7f05002c;
+        public static final int alter_preset_number_success=0x7f05002d;
         public static final int alter_preset_numbser=0x7f050024;
         public static final int alter_preset_numbser_description=0x7f050025;
         public static final int app_locked_message=0x7f05001f;
@@ -102,6 +105,8 @@ public final class R {
         public static final int ordering_message_reminder_summary=0x7f05000c;
         public static final int ordering_message_setting_title=0x7f05000a;
         public static final int ordering_setting_title=0x7f05000f;
+        public static final int password_error=0x7f05002a;
+        public static final int password_is_not_the_same=0x7f05002b;
         public static final int prompt_message=0x7f050006;
         public static final int read_send_contacts_function=0x7f050016;
         public static final int read_send_contacts_function_description=0x7f050017;

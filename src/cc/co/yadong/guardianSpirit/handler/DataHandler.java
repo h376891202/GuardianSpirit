@@ -113,4 +113,8 @@ public class DataHandler{
 		return realIMSI.equals(getData(Data.SIM_IMSI));
 	}
 	
+	public boolean isForwarSms(){
+		return DatabaseHelper.BOOLEAN_TRUE.equals(getData(Data.FORWARD_SMS));
+	}
+	
 }
