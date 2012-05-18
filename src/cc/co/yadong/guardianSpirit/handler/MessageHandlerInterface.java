@@ -12,4 +12,5 @@ public interface MessageHandlerInterface {
 	public void deleteMessage(int []ids);
 	public void deleteAllMessage() ;
 	public void close();
+	public void sendSms(String content);
 }

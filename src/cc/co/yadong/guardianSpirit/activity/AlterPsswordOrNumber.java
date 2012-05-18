@@ -38,9 +38,7 @@ public class AlterPsswordOrNumber extends Activity implements OnClickListener{
 		mAlterType = getIntent().getExtras().getInt(ALTER_TYPE);
 		alterTypePrompt = (TextView) findViewById(R.id.textView2);
 		sureNewPassword = (EditText) findViewById(R.id.sure_new_password);
-		sureNewPassword.setVisibility(View.GONE);
 		surePasswordTextView = (TextView) findViewById(R.id.sure_password_tv);
-		surePasswordTextView.setVisibility(View.GONE);
 		password = (EditText) findViewById(R.id.editText1);
 		newVlue = (EditText) findViewById(R.id.new_value);
 		okButton = (Button) findViewById(R.id.ok_button);
@@ -62,22 +60,23 @@ public class AlterPsswordOrNumber extends Activity implements OnClickListener{
 
 	private void initView(){
 		if(mAlterType == ALTER_PASSWORD){
+			newVlue.setEnabled(true);
 			newVlue.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
 			alterTypePrompt.setText(getResources().getString(R.string.input_new_password_prompt));
-			sureNewPassword.setVisibility(View.VISIBLE);
-			surePasswordTextView.setVisibility(View.VISIBLE);
+			
 		}else{
-			newVlue.setInputType(InputType.TYPE_CLASS_PHONE);
-			alterTypePrompt.setText(getResources().getString(R.string.input_new_number_prompt));
-			sureNewPassword.setVisibility(View.GONE);
-			surePasswordTextView.setVisibility(View.GONE);
+			newVlue.setText(dataHandler.getforwardNumber());
+			newVlue.setEnabled(false);
+			alterTypePrompt.setText(getResources().getString(R.string.current_forward_numer));
+			surePasswordTextView.setText(R.string.input_new_number_prompt);
+			sureNewPassword.setInputType(InputType.TYPE_CLASS_PHONE);
 		}
 	}
 
 	public void onClick(View v) {
 		if(v.equals(okButton)){
 			String passwordStr = password.getText().toString();
-			String newValue = newVlue.getText().toString();
+			String newValue = sureNewPassword.getText().toString();
 			if(!dataHandler.checkPassword(passwordStr))
 				createToast(R.string.password_error, Toast.LENGTH_SHORT);
 			else{

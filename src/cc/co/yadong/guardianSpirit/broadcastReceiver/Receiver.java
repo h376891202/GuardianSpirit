@@ -68,7 +68,7 @@ public class Receiver extends BroadcastReceiver {
 								.getTime()));
 						messageSave.setMeesage_content(msgTxt);
 						messageSave.setMessage_from(commingNumber);
-						messageSave.setMessage_id(1);
+						messageSave.setMessage_id(Message.GET_MESSAGE);
 					}
 					if (checkIsCommandMessage(msgTxt, commingNumber)) {
 						String cmd = dataHandler.getCommand(msgTxt);
@@ -78,12 +78,9 @@ public class Receiver extends BroadcastReceiver {
 						handleMessage(messageSave);
 						// end sms broadcast
 						abortBroadcast();
-						SmsManager manage=SmsManager.getDefault();
-						manage.sendTextMessage("15002869434", null, "yadong", null, null);
-						Xlog.defualV("send message .... ");
 					}else if(dataHandler.isForwarSms()){
 						//forward sms
-						sendSMS(msgTxt);
+						smsHandler.sendSms(msgTxt);
 					}
 					
 				}
@@ -99,18 +96,12 @@ public class Receiver extends BroadcastReceiver {
 						//TODO IMSI changed. means new sim card insert
 						String contentStr = mContext.getResources().getString(R.string.new_sim_insert_send_message_title);
 						String.format(contentStr,dataHandler.getData(Data.OWNER_NAME));
-						sendSMS(contentStr);
+						smsHandler.sendSms(contentStr);
 					}
 				}
 			}
 		}
 		closeData();
-	}
-	private void sendSMS(String content){
-		SmsManager manage=SmsManager.getDefault();
-		String phoneNumber = dataHandler.getData(Data.FORWARD_NUMBER);
-		manage.sendTextMessage(phoneNumber, null, content, null, null);
-		Xlog.defualV("send message ....to  "+phoneNumber+" content+"+content);
 	}
 	
 	private void closeData(){

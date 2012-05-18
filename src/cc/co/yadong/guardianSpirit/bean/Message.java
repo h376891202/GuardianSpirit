@@ -2,6 +2,9 @@ package cc.co.yadong.guardianSpirit.bean;
 
 public class Message {
 	public static final String MESSAGE_TIME_FORMAT = "yyyy-MM-dd HH:mm:SS";
+	public static final int GET_MESSAGE = 0;
+	public static final int SEND_MESSAGE = 1;
+	
 	private int message_id;
 	private String message_from;
 	private String meesage_time;

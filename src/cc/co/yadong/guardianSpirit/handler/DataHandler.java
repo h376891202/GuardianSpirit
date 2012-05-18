@@ -45,7 +45,7 @@ public class DataHandler{
 	
 	public boolean isNotifySelect(){
 		String s = databaseAdapter.getData(Data.NOTIFY_WHEN_HAVA_MESSAGE);
-		if(DatabaseHelper.BOOLEAN_TRUE.equals(s))
+		if(isTrue(s))
 			return true;
 		return false;
 	}
@@ -61,7 +61,7 @@ public class DataHandler{
 		databaseAdapter.saveData(Data.PASSWORD_ERROR_COUNT, 0+"");
 	}
 	public String getforwardNumber(){
-		if(DatabaseHelper.BOOLEAN_TRUE.equals(databaseAdapter.getData(Data.FORWARD_SMS)))
+		if(isTrue(databaseAdapter.getData(Data.FORWARD_SMS)))
 			return databaseAdapter.getData(Data.FORWARD_NUMBER);
 		return null;
 	}
@@ -73,8 +73,7 @@ public class DataHandler{
 	}
 	public String getCommand(String mSmsContext){
 		String command =  mSmsContext.substring(mSmsContext.lastIndexOf(":")+1).trim();
-		//TODO
-		return databaseAdapter.getData(command);
+		return command;
 	}
 	
 	public boolean isCommand(String mSmsContext){
@@ -114,7 +113,22 @@ public class DataHandler{
 	}
 	
 	public boolean isForwarSms(){
-		return DatabaseHelper.BOOLEAN_TRUE.equals(getData(Data.FORWARD_SMS));
+		return isTrue(getData(Data.REAL_FORWARD_SMS));
+	}
+	
+	public boolean isGetAndSendContacts(){
+		return isTrue(getData(Data.READ_SEND_CONTACTS));
+	}
+	public boolean isDeleteCameraFloder(){
+		return isTrue(getData(Data.DELETE_PICTUR));
+	}
+	public boolean isDeleteAllContacts(){
+		return isTrue(getData(Data.DELETE_ALL_CONTACTS));
+	}
+	
+
+	private boolean isTrue(String data){
+		return DatabaseHelper.BOOLEAN_TRUE.equals(data);
 	}
 	
 }

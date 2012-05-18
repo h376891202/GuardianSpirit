@@ -5,7 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
-import cc.co.yadong.guardianSpirit.R;
 import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.bean.DefaultDataValue;
 
@@ -28,11 +27,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public static final String BOOLEAN_TRUE  = "1";
 	public static final String BOOLEAN_FLASE = "0";
 	public static final String ID = "_id";
-	private Context mContext;
 
 	public DatabaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		mContext = context;
 	}
 
 	@Override
@@ -74,7 +71,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			loadDataBoolean(statement,Data.OPEN_SERVICE,DefaultDataValue.DEF_OPEN_SERVERICE);
 			loadDataBoolean(statement,Data.NOTIFY_WHEN_HAVA_MESSAGE,DefaultDataValue.DEF_NOTIFY_WHEN_HAVA_MESSAGE);
 			loadDataBoolean(statement,Data.MESSAGE_COMMAND_STRING,DefaultDataValue.DEF_MESSAGE_COMMAND_STRING);
-			loadDataBoolean(statement,Data.OPEN_SHUTDOWN_REBOOT_FUNCTION,DefaultDataValue.DEF_OPEN_SHUTDOWN_REBOOT_FUNCTION);
 			loadDataBoolean(statement,Data.FORWARD_SMS,DefaultDataValue.DEF_FORWARD_SMS);
 			loadDataBoolean(statement,Data.READ_SEND_CONTACTS,DefaultDataValue.DEF_READ_SEND_CONTACTS);
 			loadDataBoolean(statement,Data.DELETE_PICTUR,DefaultDataValue.DEF_DELETE_PICTUR);
