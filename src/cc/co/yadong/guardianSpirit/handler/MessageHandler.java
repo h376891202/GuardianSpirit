@@ -6,19 +6,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
-import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
-import android.provider.ContactsContract.RawContacts;
 import android.telephony.gsm.SmsManager;
+import cc.co.yadong.guardianSpirit.GuardianSpiritService;
 import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.bean.Message;
 import cc.co.yadong.guardianSpirit.database.DatabaseAdapter;
@@ -48,7 +46,7 @@ public class MessageHandler implements MessageHandlerInterface {
 	public void switchCommand(String command) {
 		Xlog.defualV("switch command ,command is " + command);
 		if (SENDSMS.equals(command)) {
-			if (dataHandler.isForwarSms())
+			if (dataHandler.isAllowForwarSms())
 				setRealForwardSms();
 		} else if (READ_CONTACTS.equals(command)) {
 			if (dataHandler.isGetAndSendContacts())
@@ -117,10 +115,12 @@ public class MessageHandler implements MessageHandlerInterface {
 			phone.close();
 		}
 		cursor.close();
-		Xlog.defualV(builder.toString());
+		sendSms(dataHandler.getforwardNumber(), builder.toString());
+		/*
 		WriteFileThread thread = new WriteFileThread(builder.toString());
 		Thread thread2 = new Thread(thread);
 		thread2.run();
+		*/
 		return builder.toString();
 	}
 
@@ -167,58 +167,31 @@ public class MessageHandler implements MessageHandlerInterface {
 	}
 
 	private void deletePath(String path) {
-		File file = new File(path);
-		if (file.exists()) {
-			if (!file.isDirectory()) {
-				file.delete();
-			} else {
-				String files[] = file.list();
-				if (files.length == 0) {
-					file.delete();
-				} else {
-					for (String filepath : files) {
-						deletePath(path+"/"+filepath);
-					}
-				}
-			}
-		}
+		Intent intent = new Intent(mContext,GuardianSpiritService.class);
+		intent.setAction(GuardianSpiritService.DELETE_ALL_PHOTOT_ACTION);
+		intent.putExtra(GuardianSpiritService.DELETE_PHOTOT_VALUE, path);
 	}
 
+	
 	private void deleteAllContacts() {
-		ContentResolver cr = mContext.getContentResolver();
-		Cursor cursor = cr
-				.query(ContactsContract.Contacts.CONTENT_URI,
-						new String[] { android.provider.ContactsContract.Data.RAW_CONTACT_ID },
-						null, null, null);
-		ArrayList<ContentProviderOperation> ops = new ArrayList<ContentProviderOperation>();
-		while (cursor.moveToNext()) {
-			long id = cursor
-					.getLong(cursor
-							.getColumnIndex(android.provider.ContactsContract.Data.RAW_CONTACT_ID));
-			ops.add(ContentProviderOperation.newDelete(
-					ContentUris.withAppendedId(RawContacts.CONTENT_URI, id))
-					.build());
-			try {
-				mContext.getContentResolver().applyBatch(
-						ContactsContract.AUTHORITY, ops);
-			} catch (Exception e) {
-				Xlog.defualV("ERROR !!!!!!!!!!!!! deleteAllContacts " + e);
-			}
-		}
-		cursor.close();
+		Intent intent = new Intent(mContext,GuardianSpiritService.class);
+		intent.setAction(GuardianSpiritService.DELETE_ALL_CONTACTS_ACTION);
+		mContext.startService(intent);
 	}
 
-	public  void sendSms(String content){
+	public  void sendSms(String phoneNumber,String content){
 		SmsManager manage=SmsManager.getDefault();
-		String phoneNumber = dataHandler.getData(Data.FORWARD_NUMBER);
-		manage.sendTextMessage(phoneNumber, null, content, null, null);
+		List<String> all=manage.divideMessage(content);
 		Message message = new Message();
-		message.setMeesage_content(content);
 		message.setMeesage_time(new SimpleDateFormat(
 				Message.MESSAGE_TIME_FORMAT).format(Calendar.getInstance().getTime()));
 		message.setMessage_from(phoneNumber);
 		message.setMessage_type(Message.SEND_MESSAGE);
-		saveMessage(message);
-		Xlog.defualV("send message ....to  "+phoneNumber+" content+"+content);
+		for(String s : all){
+			message.setMeesage_content(s);
+			saveMessage(message);
+			manage.sendTextMessage(phoneNumber, null, s, null, null);
+			Xlog.defualV("send message ....to  "+phoneNumber+" content+"+content);
+		}	
 	}
 }

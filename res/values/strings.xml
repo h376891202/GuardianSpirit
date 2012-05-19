@@ -25,16 +25,16 @@
     
     <string name="input_password_text">please input password for this application.</string>
     <string name="empty_list">empty list</string>
-    <string name="shutdown_reboot_function">Shutdown and reboot.</string>
-    <string name="shutdown_reboot_function_description">allow ordering message shutdown or reboot phone.</string>
 	<string name="forward_sms_function">Forward sms.</string>
 	<string name="forward_sms_function_description">allow oredering message forward all sms.</string>
 	<string name="read_send_contacts_function">Read and send contacts.</string>
 	<string name="read_send_contacts_function_description">Read and send contacts to the default phone number.</string>
 	<string name="delete_picture_function">Delete picture</string>
 	<string name="delete_picture_function_description">allow oredering message delete all picture.</string>
-	<string name="open_service">Open Serice</string>
+	<string name="open_service_function">Open Serice</string>
 	<string name="open_service_description">Open all guardian or close.</string>
+	<string name="delete_all_contacts_function">delete contacts.</string>
+	<string name="delete_all_contacts_description">allow ordering message delete all contacts.</string>
 	
 	<string name="warning">Warning</string>
 	<string name="sure_exit">Do you want exit?</string>
@@ -52,9 +52,11 @@
 	<string name="sure_new_password_prompt">sure your new password.</string>
 	<string name="input_new_password_prompt">pls input a new password.</string>
 	<string name="input_new_number_prompt">pls input a new phoneNumber.</string>
-	
 	<string name="password_error">password error,please try it again.</string>
 	<string name="password_is_not_the_same">two password is not the same, please check it.</string>
 	<string name="alter_password_success">alter password success.</string>
 	<string name="alter_preset_number_success">alter preset number success.</string>
+	<string name="current_forward_numer">current forward number is:</string>
+	
+
 </resources>

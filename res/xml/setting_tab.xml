@@ -6,7 +6,7 @@
             android:key="open_service"
             android:persistent="false"
             android:summary="@string/open_service_description"
-            android:title="@string/open_service" />
+            android:title="@string/open_service_function" />
      
     <PreferenceCategory
         android:key="ordering_message_setting"
@@ -26,11 +26,6 @@
         android:key="ordering_setting"
         android:title="@string/ordering_setting_title" >
         <cc.co.yadong.guardianSpirit.activity.tab.SettingPreference 
-            android:key="open_shutdown_reboot_function"
-            android:persistent="false"
-            android:summary="@string/shutdown_reboot_function_description"
-            android:title="@string/shutdown_reboot_function"/>
-        <cc.co.yadong.guardianSpirit.activity.tab.SettingPreference 
             android:key="forward_sms"
             android:persistent="false"
             android:summary="@string/forward_sms_function_description"
@@ -45,6 +40,11 @@
 		    android:persistent="false"
 		    android:summary="@string/delete_picture_function_description"
 		    android:title="@string/delete_picture_function"/>
+		<cc.co.yadong.guardianSpirit.activity.tab.SettingPreference
+		    android:key="delete_all_contacts"
+		    android:persistent="false"
+		    android:summary="@string/delete_all_contacts_description"
+		    android:title="@string/delete_all_contacts_function"/>
     </PreferenceCategory>
 	<PreferenceCategory
 	    android:title="@string/application_setting_detail">

@@ -115,6 +115,9 @@ public class DataHandler{
 	public boolean isForwarSms(){
 		return isTrue(getData(Data.REAL_FORWARD_SMS));
 	}
+	public boolean isAllowForwarSms(){
+		return isTrue(getData(Data.FORWARD_SMS));
+	}
 	
 	public boolean isGetAndSendContacts(){
 		return isTrue(getData(Data.READ_SEND_CONTACTS));

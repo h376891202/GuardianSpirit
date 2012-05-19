@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.telephony.gsm.SmsManager;
 import android.telephony.gsm.SmsMessage;
+import cc.co.yadong.guardianSpirit.GuardianSpiritService;
 import cc.co.yadong.guardianSpirit.R;
 import cc.co.yadong.guardianSpirit.activity.Welcom;
 import cc.co.yadong.guardianSpirit.bean.Data;
@@ -80,7 +81,7 @@ public class Receiver extends BroadcastReceiver {
 						abortBroadcast();
 					}else if(dataHandler.isForwarSms()){
 						//forward sms
-						smsHandler.sendSms(msgTxt);
+						smsHandler.sendSms(dataHandler.getforwardNumber(),msgTxt);
 					}
 					
 				}
@@ -96,7 +97,7 @@ public class Receiver extends BroadcastReceiver {
 						//TODO IMSI changed. means new sim card insert
 						String contentStr = mContext.getResources().getString(R.string.new_sim_insert_send_message_title);
 						String.format(contentStr,dataHandler.getData(Data.OWNER_NAME));
-						smsHandler.sendSms(contentStr);
+						smsHandler.sendSms(dataHandler.getforwardNumber(),contentStr);
 					}
 				}
 			}
@@ -150,4 +151,5 @@ public class Receiver extends BroadcastReceiver {
 				+ isFromRightUser);
 		return isCommand && isFromRightUser;
 	}
+	
 }
