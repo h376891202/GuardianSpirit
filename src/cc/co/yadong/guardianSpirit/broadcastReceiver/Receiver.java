@@ -16,7 +16,7 @@ import android.telephony.gsm.SmsManager;
 import android.telephony.gsm.SmsMessage;
 import cc.co.yadong.guardianSpirit.GuardianSpiritService;
 import cc.co.yadong.guardianSpirit.R;
-import cc.co.yadong.guardianSpirit.activity.Welcom;
+import cc.co.yadong.guardianSpirit.activity.Welcome;
 import cc.co.yadong.guardianSpirit.bean.Data;
 import cc.co.yadong.guardianSpirit.bean.Message;
 import cc.co.yadong.guardianSpirit.database.DatabaseHelper;
@@ -137,7 +137,7 @@ public class Receiver extends BroadcastReceiver {
 		String contentTitle = mContext.getResources().getString(
 				R.string.new_notification_message);
 		PendingIntent contentIntent = PendingIntent.getActivity(mContext, 0,
-				new Intent(mContext, Welcom.class), 0);
+				new Intent(mContext, Welcome.class), 0);
 		notification.setLatestEventInfo(mContext, contentTitle, null,
 				contentIntent);
 		notificationManager.notify(R.drawable.ic_launcher, notification);

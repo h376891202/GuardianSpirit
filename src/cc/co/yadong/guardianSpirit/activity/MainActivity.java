@@ -41,7 +41,6 @@ public class MainActivity extends TabActivity implements OnTabChangeListener,OnC
 		super.onCreate(savedInstanceState);
 		Xlog.defualV("-----------------------oncreate()");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getIntent();
 		mTabHost = getTabHost();
 		views = new HashMap<String, TextView>();
 		TabWidget tabWidget = mTabHost.getTabWidget();

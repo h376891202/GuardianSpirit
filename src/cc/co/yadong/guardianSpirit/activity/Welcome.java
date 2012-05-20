@@ -24,7 +24,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
  * @author admin
  *
  */
-public class Welcom extends Activity implements OnClickListener{
+public class Welcome extends Activity implements OnClickListener{
 	private DataHandler dataHandler = null;
 	private Button mCancelButton;
 	private Button mNextButton;
@@ -40,7 +40,7 @@ public class Welcom extends Activity implements OnClickListener{
 		dataHandler = new DataHandler(this);
 		if(dataHandler.isPasswordSaved()){
 			Intent intent = new Intent();
-			intent.setClass(Welcom.this, IdentityCheckingActivity.class);
+			intent.setClass(Welcome.this, IdentityCheckingActivity.class);
 			startActivity(intent);
 			this.finish();
 		}
@@ -92,7 +92,7 @@ public class Welcom extends Activity implements OnClickListener{
 		}else{
 			String password = mPassword.getText().toString();
 			dataHandler.setPassword(password);
-			Intent intent = new Intent(Welcom.this,SecondSetpActivity.class);
+			Intent intent = new Intent(Welcome.this,SecondSetpActivity.class);
 			startActivity(intent);
 		}
 		

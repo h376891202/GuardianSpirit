@@ -7,7 +7,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import cc.co.yadong.guardianSpirit.bean.Contact;
 import cc.co.yadong.guardianSpirit.bean.Message;
 import cc.co.yadong.guardianSpirit.util.Xlog;
 
@@ -58,18 +57,7 @@ public class DatabaseAdapter {
 		cursor.close();
 		return value;
 	}
-
-	public void addContact(Contact contact) {
-		ContentValues values = new ContentValues();
-		values.put(DatabaseHelper.WHITE_AND_BLACK_CLOUME_NAME,
-				contact.getName());
-		values.put(DatabaseHelper.WHITE_AND_BLACK_CLOUME_NUMBER,
-				contact.getNumber());
-		values.put(DatabaseHelper.WHITE_AND_BLACK_CLOUME_TYPE,
-				contact.getType());
-		database.insert(DatabaseHelper.WHITE_AND_BLACK_TABLE_NAME, null, values);
-	}
-
+	
 	public void deleteContact(int id) {
 		String sql = "delete from " + DatabaseHelper.WHITE_AND_BLACK_TABLE_NAME
 				+ " where _id=" + id;
